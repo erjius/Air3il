@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import air3il.commun.dao.IManagerDao;
 import air3il.commun.dto.DtoCompte;
 import air3il.commun.dto.DtoGroupe;
+import air3il.commun.dto.DtoVol;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -21,6 +22,7 @@ public class ManagerDao implements IManagerDao {
 
     private final Map<Integer, DtoGroupe> mapGroupes = new LinkedHashMap<>();
     private final Map<Integer, DtoCompte> mapComptes = new LinkedHashMap<>();
+    private final Map<Integer, DtoVol> mapVols = new LinkedHashMap<>();
 
     private int lastIdGroupe;
     private int lastIdCompte;
@@ -39,6 +41,10 @@ public class ManagerDao implements IManagerDao {
         return mapComptes;
     }
 
+     public Map<Integer, DtoVol> getMapVols() {
+        return mapVols;
+    }
+     
     public int getNextIdGroupe() {
         return ++lastIdGroupe;
     }

@@ -14,7 +14,7 @@ public interface IDaoVol {
 
     public void supprimer(int idVol);
 
-    public DtoVol recherher(DtoVille ville_dep, DtoVille id_ville_arr, Date date_dep);
+    public List<DtoVol> recherher(DtoVille ville_dep, DtoVille id_ville_arr, Date date_dep);
 
     public List<DtoVol> listerTout();
 

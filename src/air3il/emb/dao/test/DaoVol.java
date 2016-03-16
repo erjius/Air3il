@@ -5,10 +5,8 @@ import java.util.List;
 import java.util.Date;
 
 import air3il.commun.dao.IDaoVol;
-import air3il.commun.dto.DtoPays;
 import air3il.commun.dto.DtoVol;
 import air3il.commun.dto.DtoVille;
-//import air3il.emb.dao.test.DaoPays;
 import java.util.Map;
 
 public class DaoVol implements IDaoVol {
@@ -16,11 +14,13 @@ public class DaoVol implements IDaoVol {
     // Champs
     private final ManagerDao managerDao;
     private final Map<Integer, DtoVol> mapVols;
+    private final Map<Integer, DtoVille> mapVilles;
 
     // Constructeur
     public DaoVol(ManagerDao managerDao) {
         this.managerDao = managerDao;
         mapVols = managerDao.getMapVols();
+        mapVilles = managerDao.getMapVilles();
     }
 
     // Actions
@@ -58,28 +58,5 @@ public class DaoVol implements IDaoVol {
     public List<DtoVol> listerTout() {
         return new ArrayList<>(mapVols.values());
     }
-
-    @Override
-    public List<DtoPays> listerPays() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /*
-            return new ArrayList<>(mapPays.values());
-        */
-    }
-
-    @Override
-    public List<DtoVille> listerVille(DtoPays pays) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /*
-            List<DtoVille> ListeVille = new ArrayList<>();
-            for (Map.Entry<Integer, DtoVille> KeyVille : mapVilles.entrySet()) {
-                if(this.mapVilles.get(KeyVilles).getPays() == pays){
-                    ListVille.add(this.mapVilles.get(KeyVille));
-                }
-            }
-            return ListeVille;
-        */
-    }
-
-    
+   
 }

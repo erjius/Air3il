@@ -1,5 +1,6 @@
 package air3il.commun.dao;
 
+import air3il.commun.dto.DtoPays;
 import java.util.List;
 
 import air3il.commun.dto.DtoVille;
@@ -15,5 +16,7 @@ public interface IDaoVille {
     public DtoVille retrouver(int idVille);
 
     public List<DtoVille> listerTout();
-
+    
+    public List<DtoVille> listerVilleParPays (DtoPays pays);
+       
 }

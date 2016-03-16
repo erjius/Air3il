@@ -14,10 +14,6 @@ public interface IDaoVol {
     public void modifier(DtoVol vol);
 
     public void supprimer(int idVol);
-    
-    public List<DtoPays> listerPays();
-    
-    public List<DtoVille> listerVille (DtoPays pays);
 
     public List<DtoVol> recherher(DtoVille ville_dep, DtoVille id_ville_arr, Date date_dep);
 

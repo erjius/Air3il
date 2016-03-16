@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Date;
 
 import air3il.commun.dao.IDaoVille;
+import air3il.commun.dto.DtoPays;
 import java.util.Map;
 
 public class DaoVille implements IDaoVille {
@@ -47,4 +48,15 @@ public class DaoVille implements IDaoVille {
         return new ArrayList<>(mapVilles.values());
     }
     
+    @Override
+    public List<DtoVille> listerVilleParPays(DtoPays pays) {
+        List<DtoVille> ListeVille = new ArrayList<>();
+        for (Map.Entry<Integer, DtoVille> KeyVille : mapVilles.entrySet()) {
+            if(this.mapVilles.get(KeyVille).getPays() == pays){
+                ListeVille.add(this.mapVilles.get(KeyVille));
+            }
+        }
+        return ListeVille;
+    }
+
 }

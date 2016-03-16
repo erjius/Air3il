@@ -11,6 +11,7 @@ import air3il.commun.dto.DtoGroupe;
 import air3il.commun.dto.DtoVol;
 import air3il.commun.dto.DtoPays;
 import air3il.commun.dto.DtoVille;
+import air3il.commun.dto.DtoClient;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -27,6 +28,7 @@ public class ManagerDao implements IManagerDao {
     private final Map<Integer, DtoVol> mapVols = new LinkedHashMap<>();
     private final Map<Integer, DtoPays> mapPays = new LinkedHashMap<>();
     private final Map<Integer, DtoVille> mapVilles = new LinkedHashMap<>();
+    private final Map<Integer, DtoClient> mapClients = new LinkedHashMap<>();
     
 
     private int lastIdGroupe;
@@ -56,6 +58,10 @@ public class ManagerDao implements IManagerDao {
      
      public Map<Integer, DtoVille> getMapVilles() {
         return mapVilles;
+    }
+     
+     public Map<Integer, DtoClient> getMapClients() {
+        return mapClients;
     }
      
     public int getNextIdGroupe() {

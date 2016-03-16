@@ -1,0 +1,19 @@
+package air3il.commun.dao;
+
+import java.util.List;
+
+import air3il.commun.dto.DtoVille;
+
+public interface IDaoVille {
+
+    public void inserer(DtoVille ville);
+
+    public void modifier(DtoVille ville);
+
+    public void supprimer(int idVille);
+
+    public DtoVille retrouver(int idVille);
+
+    public List<DtoVille> listerTout();
+
+}

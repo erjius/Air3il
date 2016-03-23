@@ -5,8 +5,10 @@ import air3il.gui.javafx.EnumView;
 import air3il.gui.javafx.ManagerGui;
 import air3il.commun.securite.Role;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.HBox;
 
 public class ControllerPrincipal implements IControllerJavaFx {
 
@@ -16,9 +18,7 @@ public class ControllerPrincipal implements IControllerJavaFx {
 
     // Composants de la vue
     @FXML
-    private MenuItem menuItemSeDeconnecter;
-    @FXML
-    private Menu menuDonnees;
+    private HBox menuBar;
 
     // Actions
     @FXML
@@ -35,6 +35,15 @@ public class ControllerPrincipal implements IControllerJavaFx {
     @FXML
     public void doQuitter() {
         managerGui.getStagePrincipal().close();
+    }
+    @FXML
+    public void doAfficherVols(){
+        managerGui.showView(EnumView.Vols);
+        
+    }
+    @FXML
+    public void doAfficherReservation(){
+        managerGui.showView(EnumView.Reservation);
     }
 
     // Initialisation du Controller
@@ -56,18 +65,11 @@ public class ControllerPrincipal implements IControllerJavaFx {
     // Méthodes auxiliaires
     private void configurerMenu() {
 
-        menuItemSeDeconnecter.setDisable(true);
-
-        menuDonnees.setVisible(false);
+        menuBar.setVisible(false);
 
         if (modelSysteme.getCompteConnecte() != null) {
-            menuItemSeDeconnecter.setDisable(false);
-            if (modelSysteme.getCompteConnecte().isInRole(Role.UTILISATEUR)) {
-                menuDonnees.setVisible(true);
-            }
-            if (modelSysteme.getCompteConnecte().isInRole(Role.ADMINISTRATEUR)) {
-                menuDonnees.setVisible(true);
-            }
+            
+            menuBar.setVisible(true);
         }
     }
 

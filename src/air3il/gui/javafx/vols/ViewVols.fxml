@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="429.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="air3il.gui.javafx.vols.ControllerVols">
+    <children>
+        <Label alignment="CENTER" contentDisplay="TOP" maxWidth="1.7976931348623157E308" text="Vols" textAlignment="CENTER">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <SplitPane dividerPositions="0.5606060606060606" prefHeight="328.0" prefWidth="464.0" VBox.vgrow="ALWAYS">
+            <items>
+                <TabPane>
+                    <tabs>
+                        <Tab fx:id="ongletAller" closable="false" text="Aller">
+                            <content>
+                                <Pane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <Label layoutX="14.0" layoutY="14.0" text="En attente d'une recherche" />
+                                    </children>
+                                </Pane>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="ongletRetour" closable="false" disable="true" text="Retour">
+                            <content>
+                                <Pane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <Label layoutX="14.0" layoutY="14.0" text="En attente d'une recherche" />
+                                    </children>
+                                </Pane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+                <VBox maxWidth="200.0">
+                    <children>
+                        <Label text="Départ">
+                            <padding>
+                                <Insets bottom="5.0" left="3.0" top="5.0" />
+                            </padding>
+                        </Label>
+                        <HBox spacing="5.0" VBox.vgrow="NEVER">
+                            <children>
+                                <Label text="Pays :" />
+                                <TextField fx:id="paysAller">
+                                    <opaqueInsets>
+                                        <Insets bottom="5.0" top="5.0" />
+                                    </opaqueInsets>
+                                </TextField>
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="3.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                        <HBox spacing="5.0" VBox.vgrow="NEVER">
+                            <children>
+                                <Label text="Ville :" />
+                                <TextField fx:id="villeAller" />
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="3.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                        <Label text="Arrivée">
+                            <padding>
+                                <Insets bottom="5.0" left="3.0" top="5.0" />
+                            </padding>
+                        </Label>
+                        <HBox spacing="5.0">
+                            <children>
+                                <Label text="Pays :" />
+                                <TextField fx:id="paysRetour" />
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="3.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                        <HBox spacing="5.0">
+                            <children>
+                                <Label text="Ville :" />
+                                <TextField fx:id="villeRetour" />
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="3.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                        <HBox spacing="10.0">
+                            <children>
+                                <RadioButton fx:id="allerSimple" mnemonicParsing="false" onAction="#doMasquerDateretour" text="Aller simple">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="typeTrajet" />
+                                    </toggleGroup>
+                                </RadioButton>
+                                <RadioButton fx:id="allerRetour" mnemonicParsing="false" onAction="#doAfficherDateRetour" text="Aller/Retour" toggleGroup="$typeTrajet" />
+                            </children>
+                            <padding>
+                                <Insets bottom="5.0" left="3.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                        <DatePicker fx:id="dateAller" promptText="Date aller">
+                            <padding>
+                                <Insets bottom="5.0" left="3.0" top="5.0" />
+                            </padding>
+                        </DatePicker>
+                        <DatePicker fx:id="dateRetour" promptText="Date retour" visible="false">
+                            <padding>
+                                <Insets bottom="5.0" left="3.0" top="5.0" />
+                            </padding>
+                        </DatePicker>
+                        <Label text="Nombre de passagers">
+                            <padding>
+                                <Insets bottom="5.0" left="3.0" top="5.0" />
+                            </padding>
+                        </Label>
+                        <ComboBox fx:id="nbPassager" prefWidth="150.0" visibleRowCount="3">
+                            <padding>
+                                <Insets bottom="5.0" left="3.0" top="5.0" />                              
+                            </padding>
+                        </ComboBox>
+                    </children>
+                </VBox>
+            </items>
+        </SplitPane>
+        <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="400.0" spacing="5.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Button fx:id="btRechercher" mnemonicParsing="false" text="Rechercher" />
+                <Button fx:id="btReserver" mnemonicParsing="false" text="Réserver" />
+            </children>
+            <padding>
+                <Insets bottom="2.0" right="2.0" top="2.0" />
+            </padding>
+        </HBox>
+    </children>
+</VBox>

@@ -1,30 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 
-<BorderPane focusTraversable="true" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="air3il.gui.javafx.systeme.ControllerPrincipal">
+<BorderPane focusTraversable="true" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="air3il.gui.javafx.systeme.ControllerPrincipal">
     <top>
-        <MenuBar BorderPane.alignment="CENTER">
-            <menus>
-                <Menu mnemonicParsing="false" text="Système">
+      <HBox fx:id="menuBar" visible="false" BorderPane.alignment="CENTER">
+         <children>
+              <MenuBar maxHeight="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                  <menus>
+                  <Menu fx:id="menuMenu" mnemonicParsing="false" text="Menu">
                     <items>
-                        <MenuItem fx:id="menuItemSeDeconnecter" disable="true" mnemonicParsing="false" onAction="#doSeDeconnecter" text="Se déconnecter" />
-                        <MenuItem id="menuItemQuitter" mnemonicParsing="false" onAction="#doQuitter" text="Quitter" />
+                      <MenuItem mnemonicParsing="false" onAction="#doAfficherVols" text="Vols" />
+                        <MenuItem mnemonicParsing="false" text="Clients" />
+                        <MenuItem mnemonicParsing="false" onAction="#doAfficherReservation" text="Réservations" />
                     </items>
-                </Menu>
-                <Menu fx:id="menuDonnees" mnemonicParsing="false" text="Données" visible="false">
-                    <items>
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Aide">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="A Propos" />
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
+                  </Menu>
+                      <Menu mnemonicParsing="false" text="Etat">
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="A Propos" />
+                          </items>
+                      </Menu>
+                  </menus>
+              </MenuBar>
+            <ToolBar>
+               <items>
+                  <Button mnemonicParsing="false" onAction="#doSeDeconnecter" text="Déconnecter" />
+               </items>
+            </ToolBar>
+         </children>
+      </HBox>
     </top>
 </BorderPane>

@@ -26,7 +26,8 @@ public class ControllerConnexion implements IControllerJavaFx {
         try {
             modelSysteme.ouvrirSessionUtilisateur();
             modelSysteme.getPropTitre().set("Bienvenue");
-            modelSysteme.getPropMessage().set("Connexion réussie");
+            modelSysteme.getPropMessage().set("Connexion réussie\n" 
+                    + modelSysteme.getCompteConnecte().getPropPseudo().getValue());
             managerGui.showView(EnumView.Message);
         } catch (Exception e) {
             managerGui.afficherErreur(e);

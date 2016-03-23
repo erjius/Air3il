@@ -6,7 +6,9 @@ public enum EnumView {
 
     // Valeurs
     Message("systeme/ViewMessage.fxml"),
-    Connexion("systeme/ViewConnexion.fxml");
+    Connexion("systeme/ViewConnexion.fxml"),
+    Vols("vols/ViewVols.fxml"),
+    Reservation("reservation/ViewReservation.fxml");
 
     // Champs
     private String path;

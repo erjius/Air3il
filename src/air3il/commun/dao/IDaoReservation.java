@@ -11,11 +11,11 @@ public interface IDaoReservation {
 
     public void inserer(DtoReservation reservation);
 
-    //public void modifier(DtoReservation reservation);
+    public void modifier(DtoReservation reservation);
 
-    //public void supprimer(DtoVol vol, DtoPlace place);
+    public void supprimer(DtoVol vol, DtoPlace place);
 
-    //public DtoReservation retrouver(DtoVol vol, DtoPlace place);
+    public DtoReservation retrouver(DtoVol vol, DtoPlace place);
 
-    //public List<DtoReservation> listerTout();
+    public List<DtoReservation> listerTout();
 }

@@ -46,6 +46,14 @@ public class DtoVille {
         return id;
     }
 
+    public DtoVille(int id, String nom, DtoPays pays) {
+        super();
+        this.id = id;
+        this.nom = nom;
+        this.pays = pays;
+    }
+    
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

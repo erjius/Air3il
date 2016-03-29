@@ -4,7 +4,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import air3il.commun.dto.DtoCompte;
-import air3il.commun.dto.DtoGroupe;
 import air3il.commun.exception.ExceptionAutorisation;
 import air3il.gui.javafx.ManagerGui;
 import air3il.gui.javafx.groupe.ModelGroupe;
@@ -62,7 +61,7 @@ public class ModelSysteme {
         this.managerGui = managerGui;
         this.managerService = managerGui.getManagerService();
 
-      //  compteVue.getPropPseudo().set("geek");
+      //  compteVue.getPropLogin().set("geek");
       //  compteVue.getPropMotDePasse().set("geek");
     }
 
@@ -70,23 +69,21 @@ public class ModelSysteme {
     public void ouvrirSessionUtilisateur() throws Exception {
 
         DtoCompte dto = managerService.sessionUtilisateurOuvrir(
-                compteVue.getPropPseudo().get(), compteVue.getPropMotDePasse().get());
+                compteVue.getPropLogin().get(), compteVue.getPropMotDePasse().get());
 
         // Message de log
         String logMessage;
         if (dto == null) {
-            logMessage = "Pseudo ou mot de passe invalide : " + compteVue.getPropPseudo().get() + " / " + compteVue.getPropMotDePasse().get();
+            logMessage = "Login ou mot de passe invalide : " + compteVue.getPropLogin().get() + " / " + compteVue.getPropMotDePasse().get();
         } else {
-            logMessage = "Utilisateur connecté : " + dto.getId() + " " + dto.getPseudo();
+            logMessage = "Utilisateur connecté : " + dto.getId() + " " + dto.getLogin();
             logMessage += "\n  Roles :";
-            for (DtoGroupe groupe : dto.getGroupes()) {
-                logMessage += " " + groupe.getRole();
-            }
+                logMessage += " " + dto.getType();
         }
         logger.log(Level.CONFIG, logMessage);
 
         if (dto == null) {
-            throw new ExceptionAutorisation("Pseudo ou mot de passe invalide.");
+            throw new ExceptionAutorisation("Login ou mot de passe invalide.");
         } else {
             propCompteConnecte.set(new ObsCompte(dto, managerGui.getModel(ModelGroupe.class).getObsListGroupes()));
         }

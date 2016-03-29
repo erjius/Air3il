@@ -14,9 +14,9 @@ public class ObsCompte {
 
     // Données observables
     private final StringProperty propId = new SimpleStringProperty();
-    private final StringProperty propPseudo = new SimpleStringProperty();
+    private final StringProperty propLogin = new SimpleStringProperty();
     private final StringProperty propMotDePasse = new SimpleStringProperty();
-    private final StringProperty propEmail = new SimpleStringProperty();
+    private final StringProperty propType = new SimpleStringProperty();
 
     private final ObservableList<ItemGroupe> obsListGroupes = FXCollections.observableArrayList();
 
@@ -25,8 +25,8 @@ public class ObsCompte {
         return propId;
     }
 
-    public StringProperty getPropPseudo() {
-        return propPseudo;
+    public StringProperty getPropLogin() {
+        return propLogin;
     }
 
     public StringProperty getPropMotDePasse() {
@@ -37,8 +37,8 @@ public class ObsCompte {
         return obsListGroupes;
     }
 
-    public StringProperty getPropEmail() {
-        return propEmail;
+    public StringProperty getPropType() {
+        return propType;
     }
 
     // Constructeurs
@@ -59,9 +59,9 @@ public class ObsCompte {
     // Actions
     public void copierDonnees(ObsCompte compte) {
         propId.set(compte.getPropId().get());
-        propPseudo.set(compte.getPropPseudo().get());
+        propLogin.set(compte.getPropLogin().get());
         propMotDePasse.set(compte.getPropMotDePasse().get());
-        propEmail.set(compte.getPropEmail().get());
+        propType.set(compte.getPropType().get());
         obsListGroupes.clear();
         for (ItemGroupe item : compte.getObsListGroupes()) {
             obsListGroupes.add(new ItemGroupe(item));
@@ -70,13 +70,10 @@ public class ObsCompte {
 
     public void copierDonnees(DtoCompte dto, List<ObsGroupe> groupes) {
         propId.set(String.valueOf(dto.getId()));
-        propPseudo.set(dto.getPseudo());
+        propLogin.set(dto.getLogin());
         propMotDePasse.set(dto.getMotDePasse());
-        propEmail.set(dto.getEmail());
+        propType.set(dto.getType());
         obsListGroupes.clear();
-        for (ObsGroupe groupe : groupes) {
-            obsListGroupes.add(new ItemGroupe(groupe, dto.getGroupes().contains(groupe.creerDto())));
-        }
     }
 
     public DtoCompte creerDto() {
@@ -84,14 +81,9 @@ public class ObsCompte {
         if (propId.get() != null) {
             dto.setId(Integer.parseInt(propId.get()));
         }
-        dto.setPseudo(propPseudo.get());
+        dto.setLogin(propLogin.get());
         dto.setMotDePasse(propMotDePasse.get());
-        dto.setEmail(propEmail.get());
-        for (ItemGroupe item : obsListGroupes) {
-            if (item.getPropChoisi().get()) {
-                dto.getGroupes().add(item.getGroupe().creerDto());
-            }
-        }
+        dto.setType(propType.get());
         return dto;
     }
 

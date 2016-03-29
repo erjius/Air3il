@@ -25,14 +25,16 @@ public class DaoVol implements IDaoVol {
 
     // Actions
     @Override
-    public void inserer(DtoVol vol) {
-        vol.setId(managerDao.getNextIdGroupe());
+    public DtoVol inserer(DtoVol vol) {
+        vol.setId(managerDao.getNextIdVol());
         mapVols.put(vol.getId(), vol);
+        return vol;
     }
 
     @Override
-    public void modifier(DtoVol vol) {
+    public DtoVol modifier(DtoVol vol) {
         mapVols.replace(vol.getId(), vol);
+        return vol;
     }
 
     @Override
@@ -45,9 +47,9 @@ public class DaoVol implements IDaoVol {
         List<DtoVol> ListeVol = new ArrayList<>();
         int i = 0;
         for (Map.Entry<Integer, DtoVol> KeyVols : mapVols.entrySet()) {
-            if (this.mapVols.get(KeyVols).getville_dep() == ville_arr
-                    && this.mapVols.get(KeyVols).getville_arr() == ville_arr
-                    && this.mapVols.get(KeyVols).getDate_dep() == date_dep) {
+            if (this.mapVols.get(KeyVols).getville_dep().equals(ville_dep)
+                    && this.mapVols.get(KeyVols).getville_arr().equals(ville_arr)
+                    && this.mapVols.get(KeyVols).getDate_dep().equals(date_dep)) {
                 ListeVol.add(this.mapVols.get(KeyVols));
             }
         }

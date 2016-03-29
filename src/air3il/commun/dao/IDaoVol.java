@@ -9,9 +9,9 @@ import air3il.commun.dto.DtoPays;
 
 public interface IDaoVol {
 
-    public void inserer(DtoVol vol);
+    public DtoVol inserer(DtoVol vol);
 
-    public void modifier(DtoVol vol);
+    public DtoVol modifier(DtoVol vol);
 
     public void supprimer(int idVol);
 

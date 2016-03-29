@@ -1,21 +1,21 @@
 package air3il.commun.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DtoCompte implements Serializable {
 
     // Champs
     private int id;
+    
+    private String nom;
+    
+    private String prenom;
 
-    private String pseudo;
+    private String login;
 
     private String motDePasse;
 
-    private String email;
-
-    private List<DtoGroupe> groupes = new ArrayList<>();
+    private String type;
 
     // Propriétés
     public int getId() {
@@ -26,12 +26,28 @@ public class DtoCompte implements Serializable {
         this.id = id;
     }
 
-    public String getPseudo() {
-        return pseudo;
+    public String getNom() {
+        return nom;
     }
 
-    public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getMotDePasse() {
@@ -41,31 +57,13 @@ public class DtoCompte implements Serializable {
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
     }
-
-    public String getEmail() {
-        return email;
+    
+    public String getType() {
+        return type;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public List<DtoGroupe> getGroupes() {
-        return groupes;
-    }
-
-    public void setGroupes(List<DtoGroupe> groupes) {
-        this.groupes = groupes;
-    }
-
-    public boolean isInRole(String role) {
-
-        for (DtoGroupe groupe : groupes) {
-            if (role.equals(groupe.getRole())) {
-                return true;
-            }
-        }
-        return false;
+    public void setType(String type) {
+        this.type = type;
     }
 
     // Constructeurs
@@ -73,12 +71,14 @@ public class DtoCompte implements Serializable {
         super();
     }
 
-    public DtoCompte(int id, String pseudo, String motDePasse, String email) {
+    public DtoCompte(int id, String nom, String prenom, String login, String motDePasse, String type) {
         super();
         this.id = id;
-        this.pseudo = pseudo;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.login = login;
         this.motDePasse = motDePasse;
-        this.email = email;
+        this.type = type;
     }
 
     // hashcode() et equals()

@@ -21,14 +21,16 @@ public class DaoCompte implements IDaoCompte {
 
     // Actions
     @Override
-    public void inserer(DtoCompte compte) {
-        compte.setId(managerDao.getNextIdGroupe());
+    public DtoCompte inserer(DtoCompte compte) {
+        compte.setId(managerDao.getNextIdCompte());
         mapComptes.put(compte.getId(), compte);
+        return compte;
     }
 
     @Override
-    public void modifier(DtoCompte compte) {
+    public DtoCompte modifier(DtoCompte compte) {
         mapComptes.replace(compte.getId(), compte);
+        return compte;
     }
 
     @Override
@@ -50,7 +52,7 @@ public class DaoCompte implements IDaoCompte {
     public DtoCompte validerAuthentification(String pseudo, String motDePasse) {
 
         for (DtoCompte compte : mapComptes.values()) {
-            if (compte.getPseudo().equals(pseudo)) {
+            if (compte.getLogin().equals(pseudo)) {
                 if (compte.getMotDePasse().equals(motDePasse)) {
                     return compte;
                 }
@@ -64,7 +66,7 @@ public class DaoCompte implements IDaoCompte {
     public boolean verifierUnicitePseudo(String pseudo, int idCompte) {
 
         for (DtoCompte compte : mapComptes.values()) {
-            if (compte.getPseudo().equals(pseudo)) {
+            if (compte.getLogin().equals(pseudo)) {
                 if (compte.getId() != idCompte) {
                     return false;
                 }

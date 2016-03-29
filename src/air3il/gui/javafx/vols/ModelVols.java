@@ -1,25 +1,14 @@
 package air3il.gui.javafx.vols;
 
-import air3il.gui.javafx.systeme.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import air3il.commun.dto.DtoCompte;
-import air3il.commun.dto.DtoGroupe;
-import air3il.commun.exception.ExceptionAutorisation;
 import air3il.gui.javafx.ManagerGui;
-import air3il.gui.javafx.groupe.ModelGroupe;
-import air3il.gui.javafx.obs.ObsCompte;
 import air3il.commun.service.IManagerService;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import sun.util.resources.LocaleData;
 
 public class ModelVols {
     

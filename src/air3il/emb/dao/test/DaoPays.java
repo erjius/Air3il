@@ -22,14 +22,16 @@ public class DaoPays implements IDaoPays {
 
     // Actions
     @Override
-    public void inserer(DtoPays pays) {
-        pays.setId(managerDao.getNextIdGroupe());
+    public DtoPays inserer(DtoPays pays) {
+        pays.setId(managerDao.getNextIdPays());
         mapPays.put(pays.getId(), pays);
+        return pays;
     }
 
     @Override
-    public void modifier(DtoPays pays) {
+    public DtoPays modifier(DtoPays pays) {
         mapPays.replace(pays.getId(), pays);
+        return pays;
     }
 
     @Override

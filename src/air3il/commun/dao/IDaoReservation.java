@@ -9,9 +9,9 @@ import air3il.commun.dto.DtoClient;
 
 public interface IDaoReservation {
 
-    public void inserer(DtoReservation reservation);
+    public DtoReservation inserer(DtoReservation reservation);
 
-    public void modifier(DtoReservation reservation);
+    public DtoReservation modifier(DtoReservation reservation);
 
     public void supprimer(DtoVol vol, DtoPlace place);
 

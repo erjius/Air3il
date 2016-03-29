@@ -6,11 +6,11 @@ import air3il.commun.dto.DtoClient;
 
 public interface IDaoClient {
 
-    public void inserer(DtoClient client);
+    public DtoClient inserer(DtoClient client);
     
-    public void ajouter(String nom, String prenom, char tel, String email);
+    public DtoClient ajouter(String nom, String prenom, char tel, String email);
 
-    public void modifier(DtoClient client);
+    public DtoClient modifier(DtoClient client);
 
     public void supprimer(int idClient);
 

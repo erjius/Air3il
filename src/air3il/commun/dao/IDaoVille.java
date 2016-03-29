@@ -7,9 +7,9 @@ import air3il.commun.dto.DtoVille;
 
 public interface IDaoVille {
 
-    public void inserer(DtoVille ville);
+    public DtoVille inserer(DtoVille ville);
 
-    public void modifier(DtoVille ville);
+    public DtoVille modifier(DtoVille ville);
 
     public void supprimer(int idVille);
 

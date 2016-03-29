@@ -16,7 +16,7 @@ public class ControllerConnexion implements IControllerJavaFx {
 
     // Composants de la vue
     @FXML
-    private TextField fieldPseudo;
+    private TextField fieldLogin;
     @FXML
     private PasswordField fieldMotDePasse;
 
@@ -27,7 +27,7 @@ public class ControllerConnexion implements IControllerJavaFx {
             modelSysteme.ouvrirSessionUtilisateur();
             modelSysteme.getPropTitre().set("Bienvenue");
             modelSysteme.getPropMessage().set("Connexion réussie\n" 
-                    + modelSysteme.getCompteConnecte().getPropPseudo().getValue());
+                    + modelSysteme.getCompteConnecte().getPropLogin().getValue());
             managerGui.showView(EnumView.Message);
         } catch (Exception e) {
             managerGui.afficherErreur(e);
@@ -44,7 +44,7 @@ public class ControllerConnexion implements IControllerJavaFx {
 
         // Data binding
         ObsCompte compteVue = modelSysteme.getCompteVue();
-        fieldPseudo.textProperty().bindBidirectional(compteVue.getPropPseudo());
+        fieldLogin.textProperty().bindBidirectional(compteVue.getPropLogin());
         fieldMotDePasse.textProperty().bindBidirectional(compteVue.getPropMotDePasse());
     }
 

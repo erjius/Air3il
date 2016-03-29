@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import air3il.commun.dao.IManagerDao;
 import air3il.commun.dto.DtoCompte;
-import air3il.commun.dto.DtoGroupe;
 import air3il.commun.dto.DtoVol;
 import air3il.commun.dto.DtoPays;
 import air3il.commun.dto.DtoVille;
@@ -24,7 +23,6 @@ public class ManagerDao implements IManagerDao {
     // Champs
     private final Map<Class, Object> mapDaos = new HashMap<>();
 
-    private final Map<Integer, DtoGroupe> mapGroupes = new LinkedHashMap<>();
     private final Map<Integer, DtoCompte> mapComptes = new LinkedHashMap<>();
     private final Map<Integer, DtoVol> mapVols = new LinkedHashMap<>();
     private final Map<Integer, DtoPays> mapPays = new LinkedHashMap<>();
@@ -33,7 +31,6 @@ public class ManagerDao implements IManagerDao {
     private final Map<String, DtoReservation> mapReservations = new LinkedHashMap<>();
     
 
-    private int lastIdGroupe;
     private int lastIdCompte;
     private int lastIdVol;
     private int lastIdVille;
@@ -46,9 +43,6 @@ public class ManagerDao implements IManagerDao {
     }
 
     // Propriéts
-    public Map<Integer, DtoGroupe> getMapGroupes() {
-        return mapGroupes;
-    }
 
     public Map<Integer, DtoCompte> getMapComptes() {
         return mapComptes;
@@ -76,10 +70,6 @@ public class ManagerDao implements IManagerDao {
      
      
      
-    public int getNextIdGroupe() {
-        return ++lastIdGroupe;
-    }
-
     public int getNextIdCompte() {
         return ++lastIdCompte;
     }
@@ -162,24 +152,11 @@ public class ManagerDao implements IManagerDao {
     // Méthodes auxiliaires
     private void initMData() {
 
-        // Groupes
-        DtoGroupe groupe1 = new DtoGroupe(1, "Utilisateur", "utilisateur");
-        DtoGroupe groupe2 = new DtoGroupe(2, "Administrateur", "administrateur");
-        lastIdGroupe = 2;
-
-        mapGroupes.put(groupe1.getId(), groupe1);
-        mapGroupes.put(groupe2.getId(), groupe2);
-
         // Comptes
-        DtoCompte compte1 = new DtoCompte(1, "geek", "geek", "geek@3il.fr");
-        DtoCompte compte2 = new DtoCompte(2, "boss", "boss", "boss@3il.fr");
-        DtoCompte compte3 = new DtoCompte(3, "lambda", "lambda", "lambda@3il.fr");
+        DtoCompte compte1 = new DtoCompte(1,"geek", "geek", "geek", "geek", "Administrateur");
+        DtoCompte compte2 = new DtoCompte(2, "boss", "boss", "boss", "boss", "Hotesse");
+        DtoCompte compte3 = new DtoCompte(3, "lambda", "lambda", "lambda", "lambda", "Hotesse");
         lastIdCompte = 3;
-
-        compte1.getGroupes().add(groupe1);
-        compte1.getGroupes().add(groupe2);
-        compte2.getGroupes().add(groupe1);
-        compte3.getGroupes().add(groupe1);
 
         mapComptes.put(compte1.getId(), compte1);
         mapComptes.put(compte2.getId(), compte2);

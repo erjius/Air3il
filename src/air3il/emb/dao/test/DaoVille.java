@@ -23,14 +23,16 @@ public class DaoVille implements IDaoVille {
 
     // Actions
     @Override
-    public void inserer(DtoVille ville) {
-        ville.setId(managerDao.getNextIdGroupe());
+    public DtoVille inserer(DtoVille ville) {
+        ville.setId(managerDao.getNextIdVille());
         mapVilles.put(ville.getId(), ville);
+        return ville;
     }
 
     @Override
-    public void modifier(DtoVille ville) {
+    public DtoVille modifier(DtoVille ville) {
         mapVilles.replace(ville.getId(), ville);
+        return ville;
     }
 
     @Override
@@ -52,7 +54,7 @@ public class DaoVille implements IDaoVille {
     public List<DtoVille> listerVilleParPays(DtoPays pays) {
         List<DtoVille> ListeVille = new ArrayList<>();
         for (Map.Entry<Integer, DtoVille> KeyVille : mapVilles.entrySet()) {
-            if(this.mapVilles.get(KeyVille).getPays() == pays){
+            if(this.mapVilles.get(KeyVille).getPays().equals(pays)){
                 ListeVille.add(this.mapVilles.get(KeyVille));
             }
         }

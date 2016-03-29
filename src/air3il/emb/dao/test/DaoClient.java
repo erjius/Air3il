@@ -23,14 +23,16 @@ public class DaoClient implements IDaoClient {
 
     // Actions
     @Override
-    public void inserer(DtoClient client) {
-        client.setId(managerDao.getNextIdGroupe());
+    public DtoClient inserer(DtoClient client) {
+        client.setId(managerDao.getNextIdClient());
         mapClients.put(client.getId(), client);
+        return client;
     }
 
     @Override
-    public void ajouter(String nom, String prenom, char tel, String email) {
-        DtoClient client = new DtoClient(managerDao.getNextIdGroupe(), nom, prenom, email, tel);
+    public DtoClient ajouter(String nom, String prenom, char tel, String email) {
+        DtoClient client = new DtoClient(managerDao.getNextIdClient(), nom, prenom, email, tel);
+        return client;
     }
 
     @Override
@@ -38,8 +40,8 @@ public class DaoClient implements IDaoClient {
         List<DtoClient> ListeClient = new ArrayList<>();
         int i = 0;
         for (Map.Entry<Integer, DtoClient> KeyClients : mapClients.entrySet()) {
-            if (this.mapClients.get(KeyClients).getNom()== nom
-                    && this.mapClients.get(KeyClients).getPrenom() == prenom) {
+            if (this.mapClients.get(KeyClients).getNom().equals(nom)
+                    && this.mapClients.get(KeyClients).getPrenom().equals(prenom)) {
                 ListeClient.add(this.mapClients.get(KeyClients));
             }
         }
@@ -47,8 +49,9 @@ public class DaoClient implements IDaoClient {
     }
 
     @Override
-    public void modifier(DtoClient client) {
+    public DtoClient modifier(DtoClient client) {
         mapClients.replace(client.getId(), client);
+        return client;
     }
 
     @Override

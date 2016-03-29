@@ -6,9 +6,9 @@ import air3il.commun.dto.DtoPays;
 
 public interface IDaoPays {
 
-    public void inserer(DtoPays pays);
+    public DtoPays inserer(DtoPays pays);
 
-    public void modifier(DtoPays pays);
+    public DtoPays modifier(DtoPays pays);
 
     public void supprimer(int idPays);
 

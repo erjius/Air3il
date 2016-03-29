@@ -6,9 +6,9 @@ import air3il.commun.dto.DtoCompte;
 
 public interface IDaoCompte {
 
-    public void inserer(DtoCompte compte);
+    public DtoCompte inserer(DtoCompte compte);
 
-    public void modifier(DtoCompte compte);
+    public DtoCompte modifier(DtoCompte compte);
 
     public void supprimer(int idCompte);
 

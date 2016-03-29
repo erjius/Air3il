@@ -126,8 +126,8 @@ public class ManagerService implements IManagerService {
     // Vérifie que le compte connecté a le rôle utilisateur (ou à défaut administrateur)
     public void verifierAutorisationUtilisateur() throws ExceptionAutorisation {
         if (compteConnecte == null
-                || (!compteConnecte.isInRole(Role.UTILISATEUR)
-                && !compteConnecte.isInRole(Role.ADMINISTRATEUR))) {
+                || (!compteConnecte.getType().equals("HOTESSE")
+                && !compteConnecte.getType().equals("ADMINISTRATEUR"))) {
             throw new ExceptionAutorisation();
         }
     }
@@ -135,7 +135,7 @@ public class ManagerService implements IManagerService {
     // Vérifie que le compte connecté a le rôle administrateur
     public void verifierAutorisationAdmin() throws ExceptionAutorisation {
         if (compteConnecte == null
-                || !compteConnecte.isInRole(Role.ADMINISTRATEUR)) {
+                || !compteConnecte.getType().equals("ADMINISTRATEUR")) {
             throw new ExceptionAutorisation();
         }
     }
@@ -144,7 +144,7 @@ public class ManagerService implements IManagerService {
     // soit a comme identifiant celui passé en paramètre
     public void verifierAutorisationAdminOuCompteConnecte(int idCompte) throws ExceptionAutorisation {
         if (compteConnecte == null
-                || (!compteConnecte.isInRole(Role.ADMINISTRATEUR)
+                || (!compteConnecte.getType().equals("ADMINISTRATEUR")
                 && compteConnecte.getId() != idCompte)) {
             throw new ExceptionAutorisation();
         }

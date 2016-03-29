@@ -153,9 +153,9 @@ public class ManagerDao implements IManagerDao {
     private void initMData() {
 
         // Comptes
-        DtoCompte compte1 = new DtoCompte(1,"geek", "geek", "geek", "geek", "Administrateur");
-        DtoCompte compte2 = new DtoCompte(2, "boss", "boss", "boss", "boss", "Hotesse");
-        DtoCompte compte3 = new DtoCompte(3, "lambda", "lambda", "lambda", "lambda", "Hotesse");
+        DtoCompte compte1 = new DtoCompte(1,"geek", "geek", "geek", "geek", "ADMINISTRATEUR");
+        DtoCompte compte2 = new DtoCompte(2, "boss", "boss", "boss", "boss", "HOTESSE");
+        DtoCompte compte3 = new DtoCompte(3, "lambda", "lambda", "lambda", "lambda", "HOTESSE");
         lastIdCompte = 3;
 
         mapComptes.put(compte1.getId(), compte1);

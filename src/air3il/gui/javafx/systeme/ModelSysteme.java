@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 import air3il.commun.dto.DtoCompte;
 import air3il.commun.exception.ExceptionAutorisation;
 import air3il.gui.javafx.ManagerGui;
-import air3il.gui.javafx.groupe.ModelGroupe;
 import air3il.gui.javafx.obs.ObsCompte;
 import air3il.commun.service.IManagerService;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class ModelSysteme {
 
     // Données observables 
     // Vue connexion
-    private final ObsCompte compteVue = new ObsCompte(new ArrayList<>());
+    private final ObsCompte compteVue = new ObsCompte(new DtoCompte());
 
     // Vue message 
     private final StringProperty propTitre = new SimpleStringProperty();
@@ -85,7 +84,7 @@ public class ModelSysteme {
         if (dto == null) {
             throw new ExceptionAutorisation("Login ou mot de passe invalide.");
         } else {
-            propCompteConnecte.set(new ObsCompte(dto, managerGui.getModel(ModelGroupe.class).getObsListGroupes()));
+            propCompteConnecte.set(new ObsCompte(dto));
         }
     }
 

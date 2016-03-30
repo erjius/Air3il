@@ -104,7 +104,7 @@ public class ServiceCompte implements IServiceCompte {
     public DtoCompte validerAuthentification(String pseudo, String motDePasse) throws ExceptionAppli {
         DtoCompte compteAuthentifie = null;
         for (DtoCompte compte : managerService.getMapComptes().values()) {
-            if (compte.getPseudo().equals(pseudo)) {
+            if (compte.getLogin().equals(pseudo)) {
                 if (compte.getMotDePasse().equals(motDePasse)) {
                     compteAuthentifie = compte;
                 }
@@ -119,22 +119,22 @@ public class ServiceCompte implements IServiceCompte {
 
         StringBuilder message = new StringBuilder();
 
-        if (dto.getPseudo() == null || dto.getPseudo().isEmpty()) {
+        if (dto.getLogin() == null || dto.getLogin().isEmpty()) {
             message.append("\nLe pseudo est absent.");
-        } else if (dto.getPseudo().length() < 3) {
+        } else if (dto.getLogin().length() < 3) {
             message.append("\nLe pseudo est trop court.");
-        } else if (dto.getPseudo().length() > 25) {
+        } else if (dto.getLogin().length() > 25) {
             message.append("\nLe pseudo est trop long.");
         } else {
             boolean pseudoDejaPresent = false;
             for (DtoCompte c : mapComptes.values()) {
-                if (c.getPseudo().equals(dto.getPseudo()) && c.getId() != dto.getId()) {
+                if (c.getLogin().equals(dto.getLogin()) && c.getId() != dto.getId()) {
                     pseudoDejaPresent = true;
                     break;
                 }
             }
             if (pseudoDejaPresent) {
-                message.append("\nLe pseudo ").append(dto.getPseudo()).append(" est déjà utilisé.");
+                message.append("\nLe pseudo ").append(dto.getLogin()).append(" est déjà utilisé.");
             }
         }
 
@@ -146,8 +146,8 @@ public class ServiceCompte implements IServiceCompte {
             message.append("\nLe mot de passe est trop long.");
         }
 
-        if (dto.getEmail() == null || dto.getEmail().isEmpty()) {
-            message.append("\nL'adresse e-mail est absente.");
+        if (dto.getType() == null || dto.getType().isEmpty()) {
+            message.append("\nVous n'avez pas indiqué le type de compte.");
         }
 
         if (message.length() > 0) {

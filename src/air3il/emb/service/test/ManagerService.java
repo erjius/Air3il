@@ -8,10 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import air3il.commun.dto.DtoCompte;
-import air3il.commun.dto.DtoGroupe;
 import air3il.commun.exception.ExceptionAppli;
 import air3il.commun.exception.ExceptionAutorisation;
-import air3il.commun.securite.Role;
 import air3il.commun.service.IManagerService;
 import air3il.commun.service.IServiceCompte;
 import java.util.HashMap;
@@ -26,7 +24,6 @@ public class ManagerService implements IManagerService {
     private final Lock verrou = new ReentrantLock();
     private final Map<Class, Object> mapServices = new HashMap<>();
 
-    private final Map<Integer, DtoGroupe> mapGroupes = new LinkedHashMap<>();
     private final Map<Integer, DtoCompte> mapComptes = new LinkedHashMap<>();
 
     private DtoCompte compteConnecte = null;
@@ -36,15 +33,11 @@ public class ManagerService implements IManagerService {
         initMData();
     }
 
-    // Propriétés
     public Map<Integer, DtoCompte> getMapComptes() {
         return mapComptes;
     }
 
-    public Map<Integer, DtoGroupe> getMapGroupes() {
-        return mapGroupes;
-    }
-
+    // Propriétés
     public DtoCompte getCompteConnecte() {
         return compteConnecte;
     }
@@ -122,8 +115,8 @@ public class ManagerService implements IManagerService {
     // Vérifie que le compte connecté a le rôle utilisateur (ou à défaut administrateur)
     public void verifierAutorisationUtilisateur() throws ExceptionAutorisation {
         if (compteConnecte == null
-                || (!compteConnecte.isInRole(Role.UTILISATEUR)
-                && !compteConnecte.isInRole(Role.ADMINISTRATEUR))) {
+                || (!compteConnecte.getType().equals("HOTESSE")
+                && !compteConnecte.getType().equals("ADMINISTRATEUR"))) {
             throw new ExceptionAutorisation();
         }
     }
@@ -131,7 +124,7 @@ public class ManagerService implements IManagerService {
     // Vérifie que le compte connecté a le rôle administrateur
     public void verifierAutorisationAdmin() throws ExceptionAutorisation {
         if (compteConnecte == null
-                || !compteConnecte.isInRole(Role.ADMINISTRATEUR)) {
+                || !compteConnecte.getType().equals("ADMINISTRATEUR")) {
             throw new ExceptionAutorisation();
         }
     }
@@ -140,7 +133,7 @@ public class ManagerService implements IManagerService {
     // soit a comme identifiant celui passé en paramètre
     public void verifierAutorisationAdminOuCompteConnecte(int idCompte) throws ExceptionAutorisation {
         if (compteConnecte == null
-                || (!compteConnecte.isInRole(Role.ADMINISTRATEUR)
+                || (!compteConnecte.getType().equals("ADMINISTRATEUR")
                 && compteConnecte.getId() != idCompte)) {
             throw new ExceptionAutorisation();
         }
@@ -149,22 +142,10 @@ public class ManagerService implements IManagerService {
     // Méthodes auxiliaires
     private void initMData() {
 
-        // Groupes
-        DtoGroupe groupe1 = new DtoGroupe(1, "Utilisateur", Role.UTILISATEUR);
-        DtoGroupe groupe2 = new DtoGroupe(2, "Administrateur", Role.ADMINISTRATEUR);
-
-        mapGroupes.put(groupe1.getId(), groupe1);
-        mapGroupes.put(groupe2.getId(), groupe2);
-
         // Comptes
-        DtoCompte compte1 = new DtoCompte(1, "geek", "geek", "geek.3il.fr");
-        DtoCompte compte2 = new DtoCompte(2, "chef", "chef", "chef@3il.fr");
-        DtoCompte compte3 = new DtoCompte(3, "job", "job", "job@3il.fr");
-
-        compte1.getGroupes().add(groupe1);
-        compte1.getGroupes().add(groupe2);
-        compte2.getGroupes().add(groupe1);
-        compte3.getGroupes().add(groupe1);
+        DtoCompte compte1 = new DtoCompte(1, "geek", "geek", "geek", "geek", "ADMINISTRATEUR");
+        DtoCompte compte2 = new DtoCompte(2, "chef", "chef", "chef", "chef", "HOTESSE");
+        DtoCompte compte3 = new DtoCompte(3,"job","job", "job", "job", "HOTESSE");
 
         mapComptes.put(compte1.getId(), compte1);
         mapComptes.put(compte2.getId(), compte2);

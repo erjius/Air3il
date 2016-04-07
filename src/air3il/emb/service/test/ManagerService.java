@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import air3il.commun.dto.DtoCompte;
+import air3il.commun.dto.DtoPays;
 import air3il.commun.exception.ExceptionAppli;
 import air3il.commun.exception.ExceptionAutorisation;
 import air3il.commun.service.IManagerService;
@@ -25,7 +26,8 @@ public class ManagerService implements IManagerService {
     private final Map<Class, Object> mapServices = new HashMap<>();
 
     private final Map<Integer, DtoCompte> mapComptes = new LinkedHashMap<>();
-
+    private final Map<Integer,DtoPays> mapPays = new LinkedHashMap<>();
+   
     private DtoCompte compteConnecte = null;
 
     // Constructeur
@@ -35,6 +37,10 @@ public class ManagerService implements IManagerService {
 
     public Map<Integer, DtoCompte> getMapComptes() {
         return mapComptes;
+    }
+    
+    public Map<Integer, DtoPays> getMapPays(){
+        return mapPays;
     }
 
     // Propriétés
@@ -51,7 +57,7 @@ public class ManagerService implements IManagerService {
 
         if (service == null) {
             try {
-                // Dï¿½termine le type ï¿½ instancier
+                // Détermine le type à instancier
                 Class<T> typeImpl;
                 String nomImpl = type.getSimpleName().substring(1);
                 String nomPackage = this.getClass().getPackage().getName();
@@ -59,7 +65,7 @@ public class ManagerService implements IManagerService {
                 typeImpl = (Class<T>) Class.forName(nomImpl);
                 Constructor<T> constructor = typeImpl.getConstructor(new Class[]{ManagerService.class});
 
-                // Instancie un objet et lui injecte les dï¿½pendances
+                // Instancie un objet et lui injecte les dépendances
                 service = constructor.newInstance(new Object[]{this});
 
                 // Ajoute l'objet à la map
@@ -150,7 +156,15 @@ public class ManagerService implements IManagerService {
         mapComptes.put(compte1.getId(), compte1);
         mapComptes.put(compte2.getId(), compte2);
         mapComptes.put(compte3.getId(), compte3);
-
+        
+        // Pays
+        DtoPays pays1 = new DtoPays(1, "");
+        DtoPays pays2 = new DtoPays(2, "");
+        DtoPays pays3 = new DtoPays(3, "");
+        
+        mapPays.put(pays1.getId(), pays1);
+        mapPays.put(pays2.getId(), pays2);
+        mapPays.put(pays3.getId(), pays3);
     }
 
 }

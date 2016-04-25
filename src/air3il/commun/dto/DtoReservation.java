@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package air3il.commun.dto;
 
 import java.io.Serializable;
@@ -15,21 +10,21 @@ import java.util.Objects;
 public class DtoReservation implements Serializable {
 
     private DtoVol vol;
-    
+
     private DtoPlace place;
-    
+
     private DtoClient client;
-    
+
     private DtoCompte utilisateur;
 
     private String nom_pass;
-    
+
     private String prenom_pass;
-    
+
     private float prix;
-    
-    private char numtel_pass;
-    
+
+    private String numtel_pass;
+
     private String email_pass;
 
     public DtoVol getVol() {
@@ -88,11 +83,11 @@ public class DtoReservation implements Serializable {
         this.prix = prix;
     }
 
-    public char getNumtel_pass() {
+    public String getNumtel_pass() {
         return numtel_pass;
     }
 
-    public void setNumtel_pass(char numtel_pass) {
+    public void setNumtel_pass(String numtel_pass) {
         this.numtel_pass = numtel_pass;
     }
 
@@ -148,7 +143,4 @@ public class DtoReservation implements Serializable {
         return true;
     }
 
-    
-    
-    
 }

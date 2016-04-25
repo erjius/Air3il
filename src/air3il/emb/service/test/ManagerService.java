@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import air3il.commun.dto.DtoCompte;
 import air3il.commun.dto.DtoPays;
+import air3il.commun.dto.DtoReservation;
 import air3il.commun.exception.ExceptionAppli;
 import air3il.commun.exception.ExceptionAutorisation;
 import air3il.commun.service.IManagerService;
@@ -26,8 +27,9 @@ public class ManagerService implements IManagerService {
     private final Map<Class, Object> mapServices = new HashMap<>();
 
     private final Map<Integer, DtoCompte> mapComptes = new LinkedHashMap<>();
-    private final Map<Integer,DtoPays> mapPays = new LinkedHashMap<>();
-   
+    private final Map<Integer, DtoPays> mapPays = new LinkedHashMap<>();
+    private final Map<Integer, DtoReservation> mapReservations = new LinkedHashMap<>();
+
     private DtoCompte compteConnecte = null;
 
     // Constructeur
@@ -38,9 +40,13 @@ public class ManagerService implements IManagerService {
     public Map<Integer, DtoCompte> getMapComptes() {
         return mapComptes;
     }
-    
-    public Map<Integer, DtoPays> getMapPays(){
+
+    public Map<Integer, DtoPays> getMapPays() {
         return mapPays;
+    }
+
+    public Map<Integer, DtoReservation> getMapReservations() {
+        return mapReservations;
     }
 
     // Propriétés
@@ -151,17 +157,17 @@ public class ManagerService implements IManagerService {
         // Comptes
         DtoCompte compte1 = new DtoCompte(1, "geek", "geek", "geek", "geek", "ADMINISTRATEUR");
         DtoCompte compte2 = new DtoCompte(2, "chef", "chef", "chef", "chef", "HOTESSE");
-        DtoCompte compte3 = new DtoCompte(3,"job","job", "job", "job", "HOTESSE");
+        DtoCompte compte3 = new DtoCompte(3, "job", "job", "job", "job", "HOTESSE");
 
         mapComptes.put(compte1.getId(), compte1);
         mapComptes.put(compte2.getId(), compte2);
         mapComptes.put(compte3.getId(), compte3);
-        
+
         // Pays
         DtoPays pays1 = new DtoPays(1, "");
         DtoPays pays2 = new DtoPays(2, "");
         DtoPays pays3 = new DtoPays(3, "");
-        
+
         mapPays.put(pays1.getId(), pays1);
         mapPays.put(pays2.getId(), pays2);
         mapPays.put(pays3.getId(), pays3);

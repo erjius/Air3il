@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="air3il.gui.javafx.reservation.ControllerReservationForm">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="air3il.gui.javafx.reservation.ControllerReservation">
    <children>
-      <TableView layoutX="52.0" layoutY="243.0" prefHeight="145.0" prefWidth="498.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="243.0">
+      <TableView fx:id="tableViewPassagers" layoutX="51.0" layoutY="241.0" prefHeight="145.0" prefWidth="498.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="241.0">
         <columns>
-          <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="-1.0" text="Nom" />
-          <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="-1.0" text="Prenom" />
-            <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="-1.0" text="Tel" />
-            <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="-1.0" text="Email" />
+          <TableColumn fx:id="columnNom" maxWidth="121.0" minWidth="-Infinity" prefWidth="101.0" text="Nom" />
+          <TableColumn fx:id="columnPrenom" maxWidth="114.0" minWidth="-Infinity" prefWidth="114.0" text="Prenom" />
+            <TableColumn fx:id="columnTel" maxWidth="158.0" minWidth="-Infinity" prefWidth="116.0" text="Tel" />
+            <TableColumn fx:id="columnEmail" maxWidth="179.0" minWidth="-Infinity" prefWidth="166.0" text="Email" />
         </columns>
       </TableView>
       <HBox alignment="CENTER" layoutY="200.0" prefHeight="25.0" prefWidth="614.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -71,4 +71,3 @@
       </VBox>
    </children>
 </AnchorPane>
-

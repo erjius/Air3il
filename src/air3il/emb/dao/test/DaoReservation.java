@@ -2,7 +2,6 @@ package air3il.emb.dao.test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 
 import air3il.commun.dao.IDaoReservation;
 import air3il.commun.dto.DtoPlace;
@@ -12,7 +11,7 @@ import air3il.commun.dto.DtoVol;
 import java.util.Map;
 
 public class DaoReservation implements IDaoReservation {
-    
+
     // Champs
     private final ManagerDao managerDao;
     private final Map<String, DtoReservation> mapReservations;
@@ -27,15 +26,13 @@ public class DaoReservation implements IDaoReservation {
 
     // Actions
     @Override
-    public DtoReservation inserer(DtoReservation reservation) {
+    public void inserer(DtoReservation reservation) {
         mapReservations.put((reservation.getVol().getId() + "-" + reservation.getPlace().getId()), reservation);
-        return reservation;
     }
 
     @Override
-    public DtoReservation modifier(DtoReservation reservation) {
+    public void modifier(DtoReservation reservation) {
         mapReservations.replace((reservation.getVol().getId() + "-" + reservation.getPlace().getId()), reservation);
-        return reservation;
     }
 
     @Override
@@ -52,5 +49,5 @@ public class DaoReservation implements IDaoReservation {
     public List<DtoReservation> listerTout() {
         return new ArrayList<>(mapReservations.values());
     }
-   
+
 }

@@ -26,13 +26,15 @@ public class DaoReservation implements IDaoReservation {
 
     // Actions
     @Override
-    public void inserer(DtoReservation reservation) {
+    public DtoReservation inserer(DtoReservation reservation) {
         mapReservations.put((reservation.getVol().getId() + "-" + reservation.getPlace().getId()), reservation);
+        return  reservation;
     }
 
     @Override
-    public void modifier(DtoReservation reservation) {
+    public DtoReservation modifier(DtoReservation reservation) {
         mapReservations.replace((reservation.getVol().getId() + "-" + reservation.getPlace().getId()), reservation);
+        return reservation;
     }
 
     @Override

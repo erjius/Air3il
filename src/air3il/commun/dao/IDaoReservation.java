@@ -13,14 +13,14 @@ public interface IDaoReservation {
      * Pour ajouter une reservation
      * @param reservation 
      */
-    public void inserer(DtoReservation reservation);
+    public DtoReservation inserer(DtoReservation reservation);
 
     
     /**
      * Pour modifier une reservation
      * @param reservation 
      */
-    public void modifier(DtoReservation reservation);
+    public DtoReservation modifier(DtoReservation reservation);
 
     
     /**

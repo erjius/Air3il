@@ -31,7 +31,7 @@ public class DaoReservation implements IDaoReservation {
      * @param reservation
      */
     @Override
-    public void inserer(DtoReservation reservation) {
+    public DtoReservation inserer(DtoReservation reservation) {
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -61,14 +61,14 @@ public class DaoReservation implements IDaoReservation {
                 throw new RuntimeException(e);
             }
         }
-
 //		Alert alert = new Alert( AlertType.WARNING);
 //		alert.setHeaderText( "Id : "  + reservation.getId() );
 //		alert.showAndWait();
+        return reservation;
     }
 
     @Override
-    public void modifier(DtoReservation reservation) {
+    public DtoReservation modifier(DtoReservation reservation) {
 
         PreparedStatement stmt = null;
 
@@ -90,7 +90,7 @@ public class DaoReservation implements IDaoReservation {
                 throw new RuntimeException(e);
             }
         }
-
+        return reservation;
     }
 
     @Override

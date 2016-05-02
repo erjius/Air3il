@@ -23,7 +23,7 @@ public interface IDaoClient {
      * @param email
      * @return 
      */
-    public DtoClient ajouter(String nom, String prenom, char tel, String email);
+    public DtoClient ajouter(String nom, String prenom, String tel, String email);
     
     
     /**

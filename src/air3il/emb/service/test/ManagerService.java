@@ -10,12 +10,19 @@ import java.util.logging.Logger;
 import air3il.commun.dto.DtoCompte;
 import air3il.commun.dto.DtoPays;
 import air3il.commun.dto.DtoReservation;
+import air3il.commun.dto.DtoVille;
+import air3il.commun.dto.DtoVol;
 import air3il.commun.exception.ExceptionAppli;
 import air3il.commun.exception.ExceptionAutorisation;
 import air3il.commun.service.IManagerService;
 import air3il.commun.service.IServiceCompte;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 public class ManagerService implements IManagerService {
 
@@ -29,6 +36,7 @@ public class ManagerService implements IManagerService {
     private final Map<Integer, DtoCompte> mapComptes = new LinkedHashMap<>();
     private final Map<Integer, DtoPays> mapPays = new LinkedHashMap<>();
     private final Map<Integer, DtoReservation> mapReservations = new LinkedHashMap<>();
+    private final List<DtoVol> listVol=new ArrayList<>();
 
     private DtoCompte compteConnecte = null;
 
@@ -48,6 +56,10 @@ public class ManagerService implements IManagerService {
     public Map<Integer, DtoReservation> getMapReservations() {
         return mapReservations;
     }
+    public List<DtoVol> getListVols() {
+        return listVol;
+    }
+
 
     // Propriétés
     public DtoCompte getCompteConnecte() {
@@ -162,15 +174,51 @@ public class ManagerService implements IManagerService {
         mapComptes.put(compte1.getId(), compte1);
         mapComptes.put(compte2.getId(), compte2);
         mapComptes.put(compte3.getId(), compte3);
+        
+        mapPays.put(1, new DtoPays(1, "France"));
+        mapPays.put(2, new DtoPays(2, "Vietnam"));
+        mapPays.put(3, new DtoPays(3, "Royaume-Unis"));
+        mapPays.put(4, new DtoPays(4, "Allemagne"));
+        mapPays.put(5, new DtoPays(5, "Italie"));
+        mapPays.put(6, new DtoPays(6, "Espagne"));
+        mapPays.put(7, new DtoPays(7, "Etats-Unis"));
+        
+        
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        
+        String dateD = "15/05/2016 15:15";  
+        String dateA = "16/05/2016 16:16";
+        String dateD11 = "28/06/2016 17:17";  
+        String dateA22 = "29/06/2016 18:18";
+        String dateD13 = "28/09/2016 19:21";  
+        String dateA24 = "29/011/2016 21:26";
+        
+        try {
+            Date dateD1 = simpleDateFormat.parse(dateD);
+            Date dateA1 = simpleDateFormat.parse(dateA);
+            Date dateD2 = simpleDateFormat.parse(dateD11);
+            Date dateA2 = simpleDateFormat.parse(dateA22);
+            Date dateD3 = simpleDateFormat.parse(dateD13);
+            Date dateA3 = simpleDateFormat.parse(dateA24);
+            
+            DtoVille Paris = new DtoVille(1, "Paris", mapPays.get(1));
+            DtoVille Saigon = new DtoVille(2, "Saigon", mapPays.get(2));
+            DtoVille NY = new DtoVille(3, "New-York", mapPays.get(7));
+            
+            float prix = 150.15f;
+            float prix1 = 850.5f;
+            float prix2 = 750.46f;
+            DtoVol Vol1 = new DtoVol(1, dateD1, dateA1, "Rien", prix, Paris, Saigon);
+            DtoVol Vol2 = new DtoVol(2, dateD2, dateA2, "Rien", prix1, Saigon, Paris);
+            DtoVol Vol3 = new DtoVol(3, dateD3, dateA3, "Rien", prix2, Paris, NY);
+            listVol.add(Vol1);
+            listVol.add(Vol2);
+            listVol.add(Vol3);
+        } catch (ParseException parseException) {
+            System.err.println("merde");
+        }
 
-        // Pays
-        DtoPays pays1 = new DtoPays(1, "");
-        DtoPays pays2 = new DtoPays(2, "");
-        DtoPays pays3 = new DtoPays(3, "");
 
-        mapPays.put(pays1.getId(), pays1);
-        mapPays.put(pays2.getId(), pays2);
-        mapPays.put(pays3.getId(), pays3);
     }
 
 }

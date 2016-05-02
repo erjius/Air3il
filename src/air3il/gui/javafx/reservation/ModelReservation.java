@@ -126,6 +126,10 @@ public final class ModelReservation {
         int id = Integer.parseInt(reservation.getPropId().get());
         obsListReservations.remove(reservation);
     }
+    
+    
+
+    
 
     // Méthodes auxiliaires
     private void trierListe() {

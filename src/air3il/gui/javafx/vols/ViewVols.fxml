@@ -5,11 +5,11 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -29,11 +29,7 @@
                     <tabs>
                         <Tab fx:id="ongletAller" closable="false" text="Aller">
                             <content>
-                                <Pane prefHeight="200.0" prefWidth="200.0">
-                                    <children>
-                                        <Label layoutX="14.0" layoutY="14.0" text="En attente d'une recherche" />
-                                    </children>
-                                </Pane>
+                        <ListView fx:id="listviews" />
                             </content>
                         </Tab>
                         <Tab fx:id="ongletRetour" closable="false" disable="true" text="Retour">
@@ -57,11 +53,7 @@
                         <HBox spacing="5.0" VBox.vgrow="NEVER">
                             <children>
                                 <Label text="Pays :" />
-                                <TextField fx:id="paysAller">
-                                    <opaqueInsets>
-                                        <Insets bottom="5.0" top="5.0" />
-                                    </opaqueInsets>
-                                </TextField>
+                        <ComboBox fx:id="paysAller" prefWidth="150.0" />
                             </children>
                             <padding>
                                 <Insets bottom="5.0" left="3.0" top="5.0" />
@@ -70,7 +62,7 @@
                         <HBox spacing="5.0" VBox.vgrow="NEVER">
                             <children>
                                 <Label text="Ville :" />
-                                <TextField fx:id="villeAller" />
+                        <ComboBox fx:id="villeAller" prefWidth="150.0" />
                             </children>
                             <padding>
                                 <Insets bottom="5.0" left="3.0" top="5.0" />
@@ -84,7 +76,7 @@
                         <HBox spacing="5.0">
                             <children>
                                 <Label text="Pays :" />
-                                <TextField fx:id="paysRetour" />
+                        <ComboBox fx:id="paysRetour" prefWidth="150.0" />
                             </children>
                             <padding>
                                 <Insets bottom="5.0" left="3.0" top="5.0" />
@@ -93,7 +85,7 @@
                         <HBox spacing="5.0">
                             <children>
                                 <Label text="Ville :" />
-                                <TextField fx:id="villeRetour" />
+                        <ComboBox fx:id="villeRetour" prefWidth="150.0" />
                             </children>
                             <padding>
                                 <Insets bottom="5.0" left="3.0" top="5.0" />
@@ -138,12 +130,13 @@
         </SplitPane>
         <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="400.0" spacing="5.0" VBox.vgrow="ALWAYS">
             <children>
-                <Button fx:id="btRechercher" mnemonicParsing="false" text="Rechercher" />
+                <Button fx:id="btRechercher" mnemonicParsing="false" onAction="#doRechercheVol" text="Rechercher" />
                 <Button fx:id="btReserver" mnemonicParsing="false" text="Réserver" />
             </children>
             <padding>
                 <Insets bottom="2.0" right="2.0" top="2.0" />
             </padding>
         </HBox>
+      <ListView prefHeight="200.0" prefWidth="200.0" />
     </children>
 </VBox>

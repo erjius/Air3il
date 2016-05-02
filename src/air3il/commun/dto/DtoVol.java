@@ -2,8 +2,14 @@ package air3il.commun.dto;
 
 import java.util.Date;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class DtoVol implements Serializable {
 
@@ -11,15 +17,15 @@ public class DtoVol implements Serializable {
     private int id;
 
     private Date date_dep;
-    
+
     private Date date_arr;
 
     private String etat;
 
     private Float prix_base;
-    
+
     private DtoVille ville_dep;
-    
+
     private DtoVille ville_arr;
 
     private List<DtoVol> vols = new ArrayList<>();
@@ -101,8 +107,8 @@ public class DtoVol implements Serializable {
         this.date_arr = date_arr;
         this.etat = etat;
         this.prix_base = prix_base;
-        this.ville_dep = ville_dep;
-        this.ville_arr = ville_arr;
+        this.ville_dep = id_ville_dep;
+        this.ville_arr = id_ville_arr;
     }
 
     // hashcode() et equals()
@@ -130,6 +136,12 @@ public class DtoVol implements Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        DateFormat f = new SimpleDateFormat("HH:mm");
+        return "Départ : " +f.format(date_dep) + " Arrivé : " + f.format(date_arr) + " Prix à partir de : " + prix_base + " €";
     }
 
 }

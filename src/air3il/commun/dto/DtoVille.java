@@ -68,4 +68,10 @@ public class DtoVille {
         final DtoVille other = (DtoVille) obj;
         return this.id == other.id;
     }
+
+    @Override
+    public String toString() {
+        return  nom ;
+    }
+    
 }

@@ -62,6 +62,11 @@ public class DtoPays implements Serializable {
         final DtoPays other = (DtoPays) obj;
         return this.id == other.id;
     }
+
+    @Override
+    public String toString() {
+        return nom;
+    }
     
     
 }

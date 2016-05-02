@@ -26,6 +26,7 @@ public final class ModelVols {
     private int NbPassager;
     private final ArrayList<DtoPays> listePays = new ArrayList<>();
     private ObservableList<DtoVol> lstVol;
+    private ObservableList<DtoVol> lstVolR;
 
     public DtoVille getVilleAller() {
         return VilleAller;
@@ -49,6 +50,10 @@ public final class ModelVols {
 
     public void setVilleAller(DtoVille VilleAller) {
         this.VilleAller = VilleAller;
+    }
+
+    public ObservableList<DtoVol> getLstVolR() {
+        return lstVolR;
     }
 
     public void setPaysRetour(DtoPays PaysRetour) {
@@ -113,6 +118,9 @@ public final class ModelVols {
       
         lstVol=new ObservableListWrapper<>(serviceVols.listervols(VilleAller, VilleRetour, dateAller));
         
+    }
+    public void listerLesVolsRetours() throws ExceptionAppli{
+        lstVolR = new ObservableListWrapper<>(serviceVols.listervols(VilleRetour, VilleAller, dateRetour));
     }
     private final IServiceVols serviceVols;
     private final IServicePays servicePays;

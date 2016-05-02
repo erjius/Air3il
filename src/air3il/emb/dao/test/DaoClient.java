@@ -3,10 +3,8 @@ package air3il.emb.dao.test;
 import air3il.commun.dto.DtoClient;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 
 import air3il.commun.dao.IDaoClient;
-import air3il.commun.dto.DtoVol;
 import java.util.Map;
 
 public class DaoClient implements IDaoClient {
@@ -30,7 +28,7 @@ public class DaoClient implements IDaoClient {
     }
 
     @Override
-    public DtoClient ajouter(String nom, String prenom, char tel, String email) {
+    public DtoClient ajouter(String nom, String prenom, String tel, String email) {
         DtoClient client = new DtoClient(managerDao.getNextIdClient(), nom, prenom, email, tel);
         return client;
     }

@@ -10,6 +10,8 @@ import air3il.gui.javafx.ManagerGui;
 import com.sun.javafx.collections.ObservableListWrapper;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -117,7 +119,11 @@ public class ControllerVols implements IControllerJavaFx {
             public void changed(ObservableValue<? extends DtoPays> observable, DtoPays oldValue, DtoPays newValue) {
                 modelVols.setPaysAller(newValue);
                 villeAller.setValue(null);
-                villeAller.setItems(new ObservableListWrapper<>(modelVols.lstVilleRechercherAller()));
+                try {
+                    villeAller.setItems(new ObservableListWrapper<>(modelVols.lstVilleRechercherAller()));
+                } catch (ExceptionAppli ex) {
+                    Logger.getLogger(ControllerVols.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
@@ -127,7 +133,11 @@ public class ControllerVols implements IControllerJavaFx {
             public void changed(ObservableValue<? extends DtoPays> observable, DtoPays oldValue, DtoPays newValue) {
                 modelVols.setPaysRetour(newValue);
                 villeRetour.setValue(null);
-                villeRetour.setItems(new ObservableListWrapper<>(modelVols.lstVilleRechercherRetour()));
+                try {
+                    villeRetour.setItems(new ObservableListWrapper<>(modelVols.lstVilleRechercherRetour()));
+                } catch (ExceptionAppli ex) {
+                    Logger.getLogger(ControllerVols.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

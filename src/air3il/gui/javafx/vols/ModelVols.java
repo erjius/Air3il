@@ -11,6 +11,7 @@ import air3il.commun.service.IServiceVols;
 import com.sun.javafx.collections.ObservableListWrapper;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javafx.collections.ObservableList;
 
 public final class ModelVols {
@@ -82,13 +83,10 @@ public final class ModelVols {
         this.NbPassager = nbPassager;
     }
 
-    public ArrayList<DtoVille> lstVilleRechercherAller() {
+    public List<DtoVille> lstVilleRechercherAller() throws ExceptionAppli {
 
-        ArrayList<DtoVille> lstVille = new ArrayList<>();
-        lstVille.add(new DtoVille(1, "Paris", listePays.get(0)));
-        lstVille.add(new DtoVille(3, "Lyon", listePays.get(0)));
-        lstVille.add(new DtoVille(2, "Saigon", listePays.get(1)));
-        lstVille.add(new DtoVille(4, "Hanoi", listePays.get(1)));
+        List<DtoVille> lstVille = serviceVols.lstToutVille();
+        
         
         ArrayList<DtoVille> lstVille1 = new ArrayList<>();
         for (int i = 0; i < lstVille.size(); i++) {
@@ -99,15 +97,10 @@ public final class ModelVols {
         return lstVille1;
     }
 
-    public ArrayList<DtoVille> lstVilleRechercherRetour() {
+    public List<DtoVille> lstVilleRechercherRetour() throws ExceptionAppli {
 
-        ArrayList<DtoVille> lstVille = new ArrayList<>();
+        List<DtoVille> lstVille = serviceVols.lstToutVille();    
         
-        lstVille.add(new DtoVille(1, "Paris", listePays.get(0)));
-        lstVille.add(new DtoVille(3, "Lyon", listePays.get(0)));
-        lstVille.add(new DtoVille(2, "Saigon", listePays.get(1)));
-        lstVille.add(new DtoVille(4, "Hanoi", listePays.get(1)));
-
         ArrayList<DtoVille> lstVille1 = new ArrayList<>();
         for (int i = 0; i < lstVille.size(); i++) {
             if (lstVille.get(i).getPays() == PaysRetour) {

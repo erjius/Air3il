@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 public class ServiceVols implements IServiceVols {
 
@@ -24,21 +27,12 @@ public class ServiceVols implements IServiceVols {
     private Map<Integer, DtoVol> mapVols;
     private Map<Integer, DtoPays> mapPays;
     private Map<Integer, DtoVol> mapVol;
-    
-    // a modifier des que le service pays et ville
-    public List<DtoVille> listVille =  new ArrayList<>();
 
-    
-    
+    // a modifier des que le service pays et ville
     // Constructeur
     public ServiceVols(ManagerService managerService) {
         this.managerService = managerService;
         mapPays = managerService.getMapPays();
-        listVille=managerService.getListVille();/// a modidier///
-    }
-   
-    public List<DtoVille> getListVille()throws ExceptionAppli{
-        return listVille;
     }
 
     @Override
@@ -66,28 +60,41 @@ public class ServiceVols implements IServiceVols {
 
     @Override
     public List<DtoVol> listervols(DtoVille depart, DtoVille arrive, Date date) throws ExceptionAppli {
+
         List<DtoVol> listVol = managerService.getListVols();
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String date1 = simpleDateFormat.format(date);
-        System.err.println(date1);
+
         String dateD = null;
         List<DtoVol> lstVol = new ArrayList<>();
         for (int i = 0; i < listVol.size(); i++) {
             DtoVille villeD = listVol.get(i).getville_dep();
             DtoVille villeA = listVol.get(i).getville_arr();
             dateD = simpleDateFormat.format(listVol.get(i).getDate_dep());
-            System.err.println(dateD);
-            
-            if (date1.equals(dateD)) {
-                System.err.println("ici 1");
-            }
-            if (date1.equals(dateD)&&villeD.equals(depart) && villeA.equals(arrive)) {
-                System.err.println("ici");
+
+            if (date1.equals(dateD) && villeD.equals(depart) && villeA.equals(arrive)) {
                 lstVol.add(listVol.get(i));
             }
         }
+        if (lstVol.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de recherche ");
+            alert.setContentText("Il n'y a pas de vol correspondant a votre recherche.");
+            alert.showAndWait().ifPresent(rs -> {
+                if (rs == ButtonType.OK) {
+                    System.out.println("Pressed OK.");
+                }
+            });
+        }
+
         return lstVol;
+    }
+
+    @Override
+    public List<DtoVille> lstToutVille() throws ExceptionAppli {
+        return managerService.getListVille();
     }
 
 }

@@ -9,20 +9,17 @@ import java.util.Map;
 import java.util.TreeSet;
 
 public interface IServiceVols {
-    
-   
-    public List<DtoVol> listervols(DtoVille depart, DtoVille arrive,Date date)throws ExceptionAppli;
-    
-    public List<DtoVol> lstToutVol()throws ExceptionAppli;
-    
+
+    public List<DtoVol> listervols(DtoVille depart, DtoVille arrive, Date date) throws ExceptionAppli;
+
+    public List<DtoVol> lstToutVol() throws ExceptionAppli;
+
     public void ajoutVols(DtoVol vols) throws ExceptionAppli;
-    
-    public void modifierVols(DtoVol vols)throws ExceptionAppli;
-    
-    public void annulerVols(DtoVol vols)throws ExceptionAppli;
-    
-    
-    
-    
+
+    public void modifierVols(DtoVol vols) throws ExceptionAppli;
+
+    public void annulerVols(DtoVol vols) throws ExceptionAppli;
+
+    public List<DtoVille> lstToutVille() throws ExceptionAppli;
 
 }

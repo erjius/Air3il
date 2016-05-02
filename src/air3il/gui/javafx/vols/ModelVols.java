@@ -89,7 +89,7 @@ public final class ModelVols {
         lstVille.add(new DtoVille(3, "Lyon", listePays.get(0)));
         lstVille.add(new DtoVille(2, "Saigon", listePays.get(1)));
         lstVille.add(new DtoVille(4, "Hanoi", listePays.get(1)));
-
+        
         ArrayList<DtoVille> lstVille1 = new ArrayList<>();
         for (int i = 0; i < lstVille.size(); i++) {
             if (lstVille.get(i).getPays() == PaysAller) {
@@ -102,6 +102,7 @@ public final class ModelVols {
     public ArrayList<DtoVille> lstVilleRechercherRetour() {
 
         ArrayList<DtoVille> lstVille = new ArrayList<>();
+        
         lstVille.add(new DtoVille(1, "Paris", listePays.get(0)));
         lstVille.add(new DtoVille(3, "Lyon", listePays.get(0)));
         lstVille.add(new DtoVille(2, "Saigon", listePays.get(1)));

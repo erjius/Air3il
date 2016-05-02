@@ -24,11 +24,21 @@ public class ServiceVols implements IServiceVols {
     private Map<Integer, DtoVol> mapVols;
     private Map<Integer, DtoPays> mapPays;
     private Map<Integer, DtoVol> mapVol;
+    
+    // a modifier des que le service pays et ville
+    public List<DtoVille> listVille =  new ArrayList<>();
 
+    
+    
     // Constructeur
     public ServiceVols(ManagerService managerService) {
         this.managerService = managerService;
         mapPays = managerService.getMapPays();
+        listVille=managerService.getListVille();/// a modidier///
+    }
+   
+    public List<DtoVille> getListVille()throws ExceptionAppli{
+        return listVille;
     }
 
     @Override

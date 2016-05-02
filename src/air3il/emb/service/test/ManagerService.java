@@ -16,6 +16,7 @@ import air3il.commun.exception.ExceptionAppli;
 import air3il.commun.exception.ExceptionAutorisation;
 import air3il.commun.service.IManagerService;
 import air3il.commun.service.IServiceCompte;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,13 +37,20 @@ public class ManagerService implements IManagerService {
     private final Map<Integer, DtoCompte> mapComptes = new LinkedHashMap<>();
     private final Map<Integer, DtoPays> mapPays = new LinkedHashMap<>();
     private final Map<Integer, DtoReservation> mapReservations = new LinkedHashMap<>();
+    private final List<DtoVille> listVille=new ArrayList<>();
     private final List<DtoVol> listVol=new ArrayList<>();
+    
+
+
 
     private DtoCompte compteConnecte = null;
 
     // Constructeur
     public ManagerService() {
         initMData();
+    }
+    public List<DtoVille> getListVille() {
+        return listVille;
     }
 
     public Map<Integer, DtoCompte> getMapComptes() {
@@ -203,11 +211,20 @@ public class ManagerService implements IManagerService {
             
             DtoVille Paris = new DtoVille(1, "Paris", mapPays.get(1));
             DtoVille Saigon = new DtoVille(2, "Saigon", mapPays.get(2));
-            DtoVille NY = new DtoVille(3, "New-York", mapPays.get(7));
+            DtoVille NY = new DtoVille(3, "New-York", mapPays.get(7));            
+            DtoVille Lyon =new DtoVille(4, "Lyon", mapPays.get(1));
+            DtoVille Hanoi = new DtoVille(5, "Hanoi", mapPays.get(2));
+           
+            listVille.add(Paris);
+            listVille.add(Saigon);
+            listVille.add(NY);
+            listVille.add(Lyon);
+            listVille.add(Hanoi);
             
             float prix = 150.15f;
             float prix1 = 850.5f;
             float prix2 = 750.46f;
+            
             DtoVol Vol1 = new DtoVol(1, dateD1, dateA1, "Rien", prix, Paris, Saigon);
             DtoVol Vol2 = new DtoVol(2, dateD2, dateA2, "Rien", prix1, Saigon, Paris);
             DtoVol Vol3 = new DtoVol(3, dateD3, dateA3, "Rien", prix2, Paris, NY);

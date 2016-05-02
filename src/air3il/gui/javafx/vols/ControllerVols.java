@@ -60,6 +60,9 @@ public class ControllerVols implements IControllerJavaFx {
     private Button btRechercher;
     @FXML
     private ListView<DtoVol> listviews;
+    @FXML
+    private ListView<DtoVol> listViewsR;
+    
 
     public void doAfficherDateRetour() {
         dateRetour.setVisible(true);
@@ -81,7 +84,10 @@ public class ControllerVols implements IControllerJavaFx {
  
         modelVols.listerLesVols();
         listviews.setItems(modelVols.getListVol());
-        
+        if(allerRetour.isSelected()){
+       modelVols.listerLesVolsRetours();
+        listViewsR.setItems(modelVols.getLstVolR());
+       }
     }
 
     public ObservableList<Integer> doRemplirComboBox() {
@@ -140,5 +146,6 @@ public class ControllerVols implements IControllerJavaFx {
                 }
             }
         });
+        
     }
 }

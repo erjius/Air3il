@@ -21,7 +21,7 @@ public class DtoClient implements Serializable {
     
     private String email;
     
-    private char numtel;
+    private String numtel;
 
     public int getId() {
         return id;
@@ -55,11 +55,11 @@ public class DtoClient implements Serializable {
         this.email = email;
     }
 
-    public char getNumtel() {
+    public String getNumtel() {
         return numtel;
     }
 
-    public void setNumtel(char numtel) {
+    public void setNumtel(String numtel) {
         this.numtel = numtel;
     }
 
@@ -67,7 +67,7 @@ public class DtoClient implements Serializable {
         super();
     }
 
-    public DtoClient(int id, String nom, String prenom, String email, char numtel) {
+    public DtoClient(int id, String nom, String prenom, String email, String numtel) {
         super();
         this.id = id;
         this.nom = nom;

@@ -126,7 +126,7 @@
         <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="400.0" spacing="5.0" VBox.vgrow="ALWAYS">
             <children>
                 <Button fx:id="btRechercher" mnemonicParsing="false" onAction="#doRechercheVol" text="Rechercher" />
-                <Button fx:id="btReserver" disable="true" mnemonicParsing="false" text="Réserver" />
+                <Button fx:id="btReserver" disable="true" mnemonicParsing="false" onAction="#doSubmit" text="Réserver" />
             </children>
             <padding>
                 <Insets bottom="2.0" right="2.0" top="2.0" />

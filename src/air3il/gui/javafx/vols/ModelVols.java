@@ -8,7 +8,9 @@ import air3il.commun.exception.ExceptionAppli;
 import air3il.gui.javafx.ManagerGui;
 import air3il.commun.service.IManagerService;
 import air3il.commun.service.IServicePays;
+import air3il.commun.service.IServiceReservation;
 import air3il.commun.service.IServiceVols;
+import air3il.gui.javafx.EnumView;
 import com.sun.javafx.collections.ObservableListWrapper;
 import java.util.ArrayList;
 import java.util.Date;
@@ -149,6 +151,7 @@ public final class ModelVols {
     private final IServicePays servicePays;
     private final ManagerGui managerGui;
     private final IManagerService managerService;
+    private final IServiceReservation serviceReservation;
     // Constructeur
 
     public ModelVols(ManagerGui managerGui) throws Exception {
@@ -156,7 +159,7 @@ public final class ModelVols {
         this.managerService = managerGui.getManagerService();
         serviceVols = managerService.getService(IServiceVols.class);
         servicePays = managerService.getService(IServicePays.class);
-
+        serviceReservation=managerService.getService(IServiceReservation.class);
         listePays.addAll(servicePays.listerTout());
         lstVol = null;
 //        lstVol = new ObservableListWrapper<>(serviceVols.lstToutVol());
@@ -192,5 +195,19 @@ public final class ModelVols {
                 );
             }
         }
+        // set les listes
+        
+       // managerGui.showView(EnumView.Reservation);
+    }
+    public void cleanAll(){
+        NbPassager = 0;
+        PaysAller = null;
+        PaysRetour =null;
+        VilleAller=null;
+        VilleRetour=null;
+        dateAller=null;
+        dateRetour=null;
+        reservationsClients.clear();
+        
     }
 }

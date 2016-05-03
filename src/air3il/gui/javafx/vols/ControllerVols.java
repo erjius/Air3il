@@ -80,7 +80,9 @@ public class ControllerVols implements IControllerJavaFx {
         dateRetour.setVisible(false);
         ongletRetour.setDisable(true);
     }
-
+    public void doSubmit(){
+        modelVols.submit();
+    }
     public void doRechercheVol() throws ExceptionAppli {
         modelVols.setVilleAller(villeAller.getValue());
         modelVols.setVilleRetour(villeRetour.getValue());

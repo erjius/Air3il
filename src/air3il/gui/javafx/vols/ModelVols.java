@@ -10,7 +10,6 @@ import air3il.commun.service.IManagerService;
 import air3il.commun.service.IServicePays;
 import air3il.commun.service.IServiceReservation;
 import air3il.commun.service.IServiceVols;
-import air3il.gui.javafx.EnumView;
 import com.sun.javafx.collections.ObservableListWrapper;
 import java.util.ArrayList;
 import java.util.Date;
@@ -209,6 +208,10 @@ public final class ModelVols {
         dateAller=null;
         dateRetour=null;
         reservationsClients.clear();
+        lstVol=null;
+        lstVolR=null;
+        volAller=null;
+        volRetour=null;
         
     }
 }

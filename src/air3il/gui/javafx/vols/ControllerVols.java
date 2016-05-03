@@ -10,7 +10,6 @@ import air3il.gui.javafx.ManagerGui;
 import com.sun.javafx.collections.ObservableListWrapper;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
@@ -18,7 +17,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -27,7 +25,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 public class ControllerVols implements IControllerJavaFx {
@@ -82,6 +79,7 @@ public class ControllerVols implements IControllerJavaFx {
     }
     public void doSubmit(){
         modelVols.submit();
+        modelVols.cleanAll();
     }
     public void doRechercheVol() throws ExceptionAppli {
         modelVols.setVilleAller(villeAller.getValue());

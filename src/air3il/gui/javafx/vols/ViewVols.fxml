@@ -24,17 +24,17 @@
         </Label>
         <SplitPane dividerPositions="0.5606060606060606" prefHeight="328.0" prefWidth="464.0" VBox.vgrow="ALWAYS">
             <items>
-                <TabPane>
+                <TabPane fx:id="onglets">
                     <tabs>
                         <Tab fx:id="ongletAller" closable="false" text="Aller">
                             <content>
-                        <ListView fx:id="listviews" />
+                                <ListView fx:id="listviews" onMouseClicked="#listViewOnMouseClicked" />
                             </content>
                         </Tab>
                         <Tab fx:id="ongletRetour" closable="false" disable="true" text="Retour">
-                     <content>
-                        <ListView fx:id="listViewsR" />
-                     </content>
+                            <content>
+                                <ListView fx:id="listViewsR" />
+                            </content>
                         </Tab>
                     </tabs>
                 </TabPane>
@@ -48,7 +48,7 @@
                         <HBox spacing="5.0" VBox.vgrow="NEVER">
                             <children>
                                 <Label text="Pays :" />
-                        <ComboBox fx:id="paysAller" prefWidth="150.0" />
+                                <ComboBox fx:id="paysAller" prefWidth="150.0" />
                             </children>
                             <padding>
                                 <Insets bottom="5.0" left="3.0" top="5.0" />
@@ -57,7 +57,7 @@
                         <HBox spacing="5.0" VBox.vgrow="NEVER">
                             <children>
                                 <Label text="Ville :" />
-                        <ComboBox fx:id="villeAller" prefWidth="150.0" />
+                                <ComboBox fx:id="villeAller" prefWidth="150.0" />
                             </children>
                             <padding>
                                 <Insets bottom="5.0" left="3.0" top="5.0" />
@@ -71,7 +71,7 @@
                         <HBox spacing="5.0">
                             <children>
                                 <Label text="Pays :" />
-                        <ComboBox fx:id="paysRetour" prefWidth="150.0" />
+                                <ComboBox fx:id="paysRetour" prefWidth="150.0" />
                             </children>
                             <padding>
                                 <Insets bottom="5.0" left="3.0" top="5.0" />
@@ -80,7 +80,7 @@
                         <HBox spacing="5.0">
                             <children>
                                 <Label text="Ville :" />
-                        <ComboBox fx:id="villeRetour" prefWidth="150.0" />
+                                <ComboBox fx:id="villeRetour" prefWidth="150.0" />
                             </children>
                             <padding>
                                 <Insets bottom="5.0" left="3.0" top="5.0" />
@@ -88,7 +88,7 @@
                         </HBox>
                         <HBox spacing="10.0">
                             <children>
-                                <RadioButton fx:id="allerSimple" mnemonicParsing="false" onAction="#doMasquerDateretour" text="Aller simple">
+                                <RadioButton fx:id="allerSimple" mnemonicParsing="false" onAction="#doMasquerDateretour" selected="true" text="Aller simple">
                                     <toggleGroup>
                                         <ToggleGroup fx:id="typeTrajet" />
                                     </toggleGroup>
@@ -126,12 +126,12 @@
         <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="47.0" prefWidth="400.0" spacing="5.0" VBox.vgrow="ALWAYS">
             <children>
                 <Button fx:id="btRechercher" mnemonicParsing="false" onAction="#doRechercheVol" text="Rechercher" />
-                <Button fx:id="btReserver" mnemonicParsing="false" text="Réserver" />
+                <Button fx:id="btReserver" disable="true" mnemonicParsing="false" text="Réserver" />
             </children>
             <padding>
                 <Insets bottom="2.0" right="2.0" top="2.0" />
             </padding>
         </HBox>
-      <ListView prefHeight="200.0" prefWidth="200.0" />
+        <ListView prefHeight="200.0" prefWidth="200.0" />
     </children>
 </VBox>

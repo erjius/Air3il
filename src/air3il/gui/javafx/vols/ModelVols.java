@@ -1,6 +1,7 @@
 package air3il.gui.javafx.vols;
 
 import air3il.commun.dto.DtoPays;
+import air3il.commun.dto.DtoReservation;
 import air3il.commun.dto.DtoVille;
 import air3il.commun.dto.DtoVol;
 import air3il.commun.exception.ExceptionAppli;
@@ -23,10 +24,31 @@ public final class ModelVols {
     private DtoVille VilleRetour = null;
     private Date dateAller = null;
     private Date dateRetour = null;
+
     private int NbPassager;
+    private DtoVol volAller;
+    private DtoVol volRetour;
+
     private final ArrayList<DtoPays> listePays = new ArrayList<>();
     private ObservableList<DtoVol> lstVol;
     private ObservableList<DtoVol> lstVolR;
+    private List<DtoReservation> reservationsClients = new ArrayList<>();
+
+    public DtoVol getVolAller() {
+        return volAller;
+    }
+
+    public DtoVol getVolRetour() {
+        return volRetour;
+    }
+
+    public void setVolAller(DtoVol volAller) {
+        this.volAller = volAller;
+    }
+
+    public void setVolRetour(DtoVol volRetour) {
+        this.volRetour = volRetour;
+    }
 
     public DtoVille getVilleAller() {
         return VilleAller;
@@ -91,8 +113,7 @@ public final class ModelVols {
     public List<DtoVille> lstVilleRechercherAller() throws ExceptionAppli {
 
         List<DtoVille> lstVille = serviceVols.lstToutVille();
-        
-        
+
         ArrayList<DtoVille> lstVille1 = new ArrayList<>();
         for (int i = 0; i < lstVille.size(); i++) {
             if (lstVille.get(i).getPays() == PaysAller) {
@@ -104,8 +125,8 @@ public final class ModelVols {
 
     public List<DtoVille> lstVilleRechercherRetour() throws ExceptionAppli {
 
-        List<DtoVille> lstVille = serviceVols.lstToutVille();    
-        
+        List<DtoVille> lstVille = serviceVols.lstToutVille();
+
         ArrayList<DtoVille> lstVille1 = new ArrayList<>();
         for (int i = 0; i < lstVille.size(); i++) {
             if (lstVille.get(i).getPays() == PaysRetour) {
@@ -114,12 +135,14 @@ public final class ModelVols {
         }
         return lstVille1;
     }
-    public void listerLesVols() throws ExceptionAppli{
-      
-        lstVol=new ObservableListWrapper<>(serviceVols.listervols(VilleAller, VilleRetour, dateAller));
-        
+
+    public void listerLesVols() throws ExceptionAppli {
+
+        lstVol = new ObservableListWrapper<>(serviceVols.listervols(VilleAller, VilleRetour, dateAller));
+
     }
-    public void listerLesVolsRetours() throws ExceptionAppli{
+
+    public void listerLesVolsRetours() throws ExceptionAppli {
         lstVolR = new ObservableListWrapper<>(serviceVols.listervols(VilleRetour, VilleAller, dateRetour));
     }
     private final IServiceVols serviceVols;
@@ -135,8 +158,39 @@ public final class ModelVols {
         servicePays = managerService.getService(IServicePays.class);
 
         listePays.addAll(servicePays.listerTout());
-        lstVol=null;
+        lstVol = null;
 //        lstVol = new ObservableListWrapper<>(serviceVols.lstToutVol());
 
+    }
+
+    public void submit() {
+        for (int i = 0; i < NbPassager; i++) {
+            reservationsClients.add(
+                    new DtoReservation(
+                            volAller,
+                            null,
+                            null,
+                            managerService.getCompteConnecte(),
+                            null,
+                            null,
+                            volAller.getPrix_base()
+                    )
+            );
+        }
+        if (volRetour != null) {
+            for (int i = 0; i < NbPassager; i++) {
+                reservationsClients.add(
+                        new DtoReservation(
+                                volAller,
+                                null,
+                                null,
+                                managerService.getCompteConnecte(),
+                                null,
+                                null,
+                                volAller.getPrix_base()
+                        )
+                );
+            }
+        }
     }
 }

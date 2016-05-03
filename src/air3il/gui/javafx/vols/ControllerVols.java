@@ -10,12 +10,15 @@ import air3il.gui.javafx.ManagerGui;
 import com.sun.javafx.collections.ObservableListWrapper;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -23,6 +26,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
 public class ControllerVols implements IControllerJavaFx {
 
@@ -51,6 +57,8 @@ public class ControllerVols implements IControllerJavaFx {
     @FXML
     private ComboBox<Integer> nbPassager;
     @FXML
+    private TabPane onglets;
+    @FXML
     private Tab ongletRetour;
     @FXML
     private Tab ongletAller;
@@ -62,7 +70,6 @@ public class ControllerVols implements IControllerJavaFx {
     private ListView<DtoVol> listviews;
     @FXML
     private ListView<DtoVol> listViewsR;
-    
 
     public void doAfficherDateRetour() {
         dateRetour.setVisible(true);
@@ -75,19 +82,30 @@ public class ControllerVols implements IControllerJavaFx {
     }
 
     public void doRechercheVol() throws ExceptionAppli {
-        modelVols.setVilleAller(villeAller.getValue());        
+        modelVols.setVilleAller(villeAller.getValue());
         modelVols.setVilleRetour(villeRetour.getValue());
         modelVols.setNbPassager(nbPassager.getValue());
         //recuperer les dates 
         modelVols.setDateAller(Date.valueOf(dateAller.getValue()));
         modelVols.setDateRetour(Date.valueOf(dateRetour.getValue()));
- 
+
         modelVols.listerLesVols();
         listviews.setItems(modelVols.getListVol());
-        if(allerRetour.isSelected()){
-       modelVols.listerLesVolsRetours();
-        listViewsR.setItems(modelVols.getLstVolR());
-       }
+        if (allerRetour.isSelected()) {
+            modelVols.listerLesVolsRetours();
+            listViewsR.setItems(modelVols.getLstVolR());
+        }
+    }
+
+    @FXML
+    private void listViewOnMouseClicked(MouseEvent event) {
+        if (event.getClickCount() >= 2) {
+            if (allerRetour.isSelected()) {
+                if (modelVols.getVolAller() != null) {
+                    onglets.selectionModelProperty().get().select(ongletRetour);
+                }
+            }
+        }
     }
 
     public ObservableList<Integer> doRemplirComboBox() {
@@ -118,7 +136,7 @@ public class ControllerVols implements IControllerJavaFx {
 
         dateAller.setValue(LocalDate.now());
         dateRetour.setValue(LocalDate.now());
-        //recuperer les données de text 
+//recuperer les données de text 
         paysAller.setItems(new ObservableListWrapper<>(modelVols.getListePays()));
         paysAller.valueProperty().addListener(new ChangeListener<DtoPays>() {
             @Override
@@ -146,6 +164,35 @@ public class ControllerVols implements IControllerJavaFx {
                 }
             }
         });
-        
+        listviews.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<DtoVol>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends DtoVol> c) {
+                c.next();
+                if (c.wasAdded()) {
+                    modelVols.setVolAller(c.getAddedSubList().get(0));
+                    if (allerSimple.isSelected() || modelVols.getVolRetour() != null) {
+                        btReserver.setDisable(false);
+                    }
+                } else if (c.wasRemoved()) {
+                    btReserver.setDisable(true);
+                    modelVols.setVolAller(null);
+                }
+            }
+        });
+        listViewsR.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<DtoVol>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends DtoVol> c) {
+                c.next();
+                if (c.wasAdded()) {
+                    modelVols.setVolRetour(c.getAddedSubList().get(0));
+                    if (modelVols.getVolAller() != null) {
+                        btReserver.setDisable(false);
+                    }
+                } else if (c.wasRemoved()) {
+                    modelVols.setVolAller(null);
+                    btReserver.setDisable(true);
+                }
+            }
+        });
     }
 }

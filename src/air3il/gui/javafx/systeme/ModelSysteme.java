@@ -60,8 +60,8 @@ public class ModelSysteme {
         this.managerGui = managerGui;
         this.managerService = managerGui.getManagerService();
 
-      //  compteVue.getPropLogin().set("geek");
-      //  compteVue.getPropMotDePasse().set("geek");
+        compteVue.getPropLogin().set("geek");
+        compteVue.getPropMotDePasse().set("geek");
     }
 
     // Actions

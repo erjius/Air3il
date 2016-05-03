@@ -8,7 +8,9 @@ public interface IManagerService {
     public <T> T getService(Class<T> type) throws ExceptionAppli;
 
     public DtoCompte sessionUtilisateurOuvrir(String pseudo, String motDePasse) throws ExceptionAppli;
-
+    
+    public DtoCompte getCompteConnecte();
+     
     public void sessionUtilisateurFermer() throws ExceptionAppli;
 
     public void threadAfterBegin();

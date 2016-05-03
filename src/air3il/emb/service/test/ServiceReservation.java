@@ -22,7 +22,25 @@ public class ServiceReservation implements IServiceReservation {
     // Champs 
     private final ManagerService managerService;
     private final Map<Integer, DtoReservation> mapReservations;
+    private  List<DtoReservation> listReservationAller = new ArrayList<>();
 
+    public void setListReservationAller(List<DtoReservation> listReservationAller) {
+        this.listReservationAller = listReservationAller;
+    }
+
+    public void setListReservationRetour(List<DtoReservation> listReservationRetour) {
+        this.listReservationRetour = listReservationRetour;
+    }
+    private  List<DtoReservation> listReservationRetour= new ArrayList<>();
+
+    public List<DtoReservation> getListReservationAller() {
+        return listReservationAller;
+    }
+
+    public List<DtoReservation> getListReservationRetour() {
+        return listReservationRetour;
+    }
+    
     // Constructeur
     public ServiceReservation(ManagerService managerService) {
         this.managerService = managerService;
@@ -61,8 +79,8 @@ public class ServiceReservation implements IServiceReservation {
     private void verifierValiditeDonnees(DtoReservation reservation) throws ExceptionAppli {
 
         StringBuilder message = new StringBuilder();
-
-        if (reservation.getNom_pass() == null || reservation.getNom_pass().isEmpty()) {
+        try {
+            if (reservation.getNom_pass() == null || reservation.getNom_pass().isEmpty()) {
             message.append("\nLe nom est absent.");
         } else if (reservation.getNom_pass().length() > 25) {
             message.append("\nLe nom est trop long.");
@@ -77,6 +95,52 @@ public class ServiceReservation implements IServiceReservation {
         if (message.length() > 0) {
             throw new ExceptionValidation(message.toString().substring(1));
         }
+        } catch (Exception e) {
+        }
+        
+    }
+
+    @Override
+    public void supprimer(int idReservation) throws ExceptionAppli {
+
+        try {
+            managerService.verifierAutorisationUtilisateur();
+            mapReservations.remove(idReservation);
+        } catch (RuntimeException e) {
+            logger.log(Level.SEVERE, e.getMessage(), e);
+            throw new ExceptionAppli(e);
+        }
+
+    }
+
+    @Override
+    public DtoReservation modifier(DtoReservation reservation) throws ExceptionAppli {
+
+        try {
+            managerService.verifierAutorisationUtilisateur();
+            verifierValiditeDonnees(reservation);
+
+            mapReservations.replace(reservation.getId(), reservation);
+            return reservation;
+        } catch (RuntimeException e) {
+            logger.log(Level.SEVERE, e.getMessage(), e);
+            throw new ExceptionAppli(e);
+        }
+
+    }
+
+    @Override
+    public DtoReservation retrouver(int idReservation) throws ExceptionAppli {
+
+        try {
+            managerService.verifierAutorisationUtilisateur();
+            DtoReservation reservation = mapReservations.get(idReservation);
+            return reservation;
+        } catch (RuntimeException e) {
+            logger.log(Level.SEVERE, e.getMessage(), e);
+            throw new ExceptionAppli(e);
+        }
+
     }
 
 }

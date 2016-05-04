@@ -37,12 +37,17 @@ public class ManagerService implements IManagerService {
     private final Map<Integer, DtoCompte> mapComptes = new LinkedHashMap<>();
     private final Map<Integer, DtoPays> mapPays = new LinkedHashMap<>();
     private final Map<Integer, DtoReservation> mapReservations = new LinkedHashMap<>();
-    private final List<DtoVille> listVille=new ArrayList<>();
-    private final List<DtoVol> listVol=new ArrayList<>();
+    private  List<DtoVille> listVille=new ArrayList<>();
+    private  List<DtoVol> listVol=new ArrayList<>();
+
+    public void setListVille(List<DtoVille> listVille) {
+        this.listVille = listVille;
+    }
+
+    public void setListVol(List<DtoVol> listVol) {
+        this.listVol = listVol;
+    }
     
-
-
-
     private DtoCompte compteConnecte = null;
 
     // Constructeur

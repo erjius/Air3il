@@ -37,17 +37,20 @@ public class ServiceVols implements IServiceVols {
 
     @Override
     public void ajoutVols(DtoVol vols) throws ExceptionAppli {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        managerService.getListVols().add(vols);
+                
     }
 
     @Override
     public void modifierVols(DtoVol vols) throws ExceptionAppli {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+       managerService.getListVols().remove(vols.getId());
+       managerService.getListVols().add(vols);
     }
 
     @Override
     public void annulerVols(DtoVol vols) throws ExceptionAppli {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        managerService.getListVols().get(vols.getId()).setEtat("Annuler");
     }
 
     @Override

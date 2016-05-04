@@ -20,6 +20,5 @@ public interface IServiceVols {
 
     public void annulerVols(DtoVol vols) throws ExceptionAppli;
 
-    public List<DtoVille> lstToutVille() throws ExceptionAppli;
-
+ 
 }

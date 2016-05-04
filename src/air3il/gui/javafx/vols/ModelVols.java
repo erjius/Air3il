@@ -113,7 +113,7 @@ public final class ModelVols {
 
     public List<DtoVille> lstVilleRechercherAller() throws ExceptionAppli {
 
-        List<DtoVille> lstVille = serviceVols.lstToutVille();
+        List<DtoVille> lstVille = servicePays.listerToutVille();
 
         ArrayList<DtoVille> lstVille1 = new ArrayList<>();
         for (int i = 0; i < lstVille.size(); i++) {
@@ -126,7 +126,7 @@ public final class ModelVols {
 
     public List<DtoVille> lstVilleRechercherRetour() throws ExceptionAppli {
 
-        List<DtoVille> lstVille = serviceVols.lstToutVille();
+        List<DtoVille> lstVille = servicePays.listerToutVille();
 
         ArrayList<DtoVille> lstVille1 = new ArrayList<>();
         for (int i = 0; i < lstVille.size(); i++) {
@@ -159,7 +159,7 @@ public final class ModelVols {
         serviceVols = managerService.getService(IServiceVols.class);
         servicePays = managerService.getService(IServicePays.class);
         serviceReservation=managerService.getService(IServiceReservation.class);
-        listePays.addAll(servicePays.listerTout());
+        listePays.addAll(servicePays.listerToutPays());
         lstVol = null;
 //        lstVol = new ObservableListWrapper<>(serviceVols.lstToutVol());
 

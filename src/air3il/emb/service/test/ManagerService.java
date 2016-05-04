@@ -237,6 +237,15 @@ public class ManagerService implements IManagerService {
             listVille.add(NY);
             listVille.add(Lyon);
             listVille.add(Hanoi);
+            listVille.add(LosAngeles);
+            listVille.add(Londres);
+            listVille.add(Manchester);
+            listVille.add(Berlin);
+            listVille.add(Francfort);
+            listVille.add(Rome);
+            listVille.add(Milan);
+            listVille.add(Barcelone);
+            listVille.add(Madrid);
             
             float prix = 150.15f;
             float prix1 = 850.5f;

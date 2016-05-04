@@ -179,7 +179,7 @@ public class ServicePays implements IServicePays {
 
     @Override
     public List<DtoVille> listerToutVille() throws ExceptionAppli {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return managerService.getListVille();
     }
 
 }

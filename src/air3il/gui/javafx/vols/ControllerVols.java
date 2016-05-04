@@ -1,6 +1,7 @@
 package air3il.gui.javafx.vols;
 
 import air3il.commun.dto.DtoPays;
+import air3il.commun.dto.DtoReservation;
 import air3il.commun.dto.DtoVille;
 import air3il.commun.dto.DtoVol;
 import air3il.commun.exception.ExceptionAppli;
@@ -184,7 +185,7 @@ public class ControllerVols implements IControllerJavaFx {
                     }
                 } else if (c.wasRemoved()) {
                     btReserver.setDisable(true);
-                    modelVols.setVolAller(null);
+                    modelVols.setVolAller(null);                    
                 }
             }
         });

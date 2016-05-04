@@ -45,6 +45,11 @@ public class ControllerPrincipal implements IControllerJavaFx {
     public void doAfficherReservation(){
         managerGui.showView(EnumView.Reservation);
     }
+    
+    @FXML
+    public void doAfficherPaysVilles(){
+    managerGui.showView(EnumView.Pays_Villes);
+    }
 
     // Initialisation du Controller
     @Override

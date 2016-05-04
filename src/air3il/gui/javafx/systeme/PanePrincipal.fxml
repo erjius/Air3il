@@ -19,6 +19,7 @@
                       <MenuItem mnemonicParsing="false" onAction="#doAfficherVols" text="Vols" />
                         <MenuItem mnemonicParsing="false" text="Clients" />
                         <MenuItem mnemonicParsing="false" onAction="#doAfficherReservation" text="Réservations" />
+                        <MenuItem mnemonicParsing="false" onAction="#doAfficherPaysVilles" text="Pays/villes" />
                     </items>
                   </Menu>
                       <Menu mnemonicParsing="false" text="Etat">

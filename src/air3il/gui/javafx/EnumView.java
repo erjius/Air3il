@@ -8,7 +8,8 @@ public enum EnumView {
     Message("systeme/ViewMessage.fxml"),
     Connexion("systeme/ViewConnexion.fxml"),
     Vols("vols/ViewVols.fxml"),
-    Reservation("reservation/ViewReservation.fxml");
+    Reservation("reservation/ViewReservation.fxml"),
+    Pays_Villes("pays/ViewAjoutPaysVille.fxml");
 
     // Champs
     private String path;

@@ -190,7 +190,7 @@ public class ManagerService implements IManagerService {
         
         mapPays.put(1, new DtoPays(1, "France"));
         mapPays.put(2, new DtoPays(2, "Vietnam"));
-        mapPays.put(3, new DtoPays(3, "Royaume-Unis"));
+        mapPays.put(3, new DtoPays(3, "Royaume-Uni"));
         mapPays.put(4, new DtoPays(4, "Allemagne"));
         mapPays.put(5, new DtoPays(5, "Italie"));
         mapPays.put(6, new DtoPays(6, "Espagne"));
@@ -217,8 +217,20 @@ public class ManagerService implements IManagerService {
             DtoVille Paris = new DtoVille(1, "Paris", mapPays.get(1));
             DtoVille Saigon = new DtoVille(2, "Saigon", mapPays.get(2));
             DtoVille NY = new DtoVille(3, "New-York", mapPays.get(7));            
+            DtoVille LosAngeles = new DtoVille(3, "Los Angeles", mapPays.get(7));            
             DtoVille Lyon =new DtoVille(4, "Lyon", mapPays.get(1));
             DtoVille Hanoi = new DtoVille(5, "Hanoi", mapPays.get(2));
+            DtoVille Londres = new DtoVille(6, "Londres", mapPays.get(3));
+            DtoVille Manchester = new DtoVille(6 , "Manchester", mapPays.get(3));
+            DtoVille Berlin = new DtoVille(5, "Berlin", mapPays.get(4));
+            DtoVille Francfort = new DtoVille(5, "Francfort", mapPays.get(4));
+            DtoVille Rome = new DtoVille(5, "Rome", mapPays.get(5));
+            DtoVille Milan = new DtoVille(5, "Milan", mapPays.get(5));
+            DtoVille Barcelone = new DtoVille(5, "Barcelone", mapPays.get(6));
+            DtoVille Madrid = new DtoVille(5, "Madrid", mapPays.get(6));
+            
+            
+            
            
             listVille.add(Paris);
             listVille.add(Saigon);

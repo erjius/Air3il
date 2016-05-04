@@ -82,8 +82,8 @@ public class ServiceVols implements IServiceVols {
         }
         if (lstVol.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Erreur");
-            alert.setHeaderText("Erreur de recherche ");
+            alert.setTitle("Manque");
+            alert.setHeaderText("Problème de recherche ");
             alert.setContentText("Il n'y a pas de vol correspondant a votre recherche.");
             alert.showAndWait().ifPresent(rs -> {
                 if (rs == ButtonType.OK) {

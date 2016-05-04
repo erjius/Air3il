@@ -95,9 +95,4 @@ public class ServiceVols implements IServiceVols {
         return lstVol;
     }
 
-    @Override
-    public List<DtoVille> lstToutVille() throws ExceptionAppli {
-        return managerService.getListVille();
-    }
-
 }

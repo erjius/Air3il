@@ -72,10 +72,6 @@ public class ServiceVols implements IServiceVols{
         }
     }
 
-    @Override
-    public List<DtoVille> lstToutVille() throws ExceptionAppli {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     
 

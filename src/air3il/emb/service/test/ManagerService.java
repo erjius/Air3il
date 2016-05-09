@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import air3il.commun.dto.DtoCompte;
+import air3il.commun.dto.DtoPassager;
 import air3il.commun.dto.DtoPays;
 import air3il.commun.dto.DtoReservation;
 import air3il.commun.dto.DtoVille;
@@ -39,7 +40,8 @@ public class ManagerService implements IManagerService {
     private final Map<Integer, DtoReservation> mapReservations = new LinkedHashMap<>();
     private  List<DtoVille> listVille=new ArrayList<>();
     private  List<DtoVol> listVol=new ArrayList<>();
-
+    private final Map<Integer, DtoPassager> mapPassagers = new LinkedHashMap<>();
+    
     public void setListVille(List<DtoVille> listVille) {
         this.listVille = listVille;
     }
@@ -71,6 +73,10 @@ public class ManagerService implements IManagerService {
     }
     public List<DtoVol> getListVols() {
         return listVol;
+    }
+    
+    public Map<Integer, DtoPassager> getMapPassagers() {
+        return mapPassagers;
     }
 
 
@@ -263,5 +269,7 @@ public class ManagerService implements IManagerService {
 
 
     }
+
+ 
 
 }

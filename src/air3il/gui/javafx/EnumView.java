@@ -9,7 +9,9 @@ public enum EnumView {
     Connexion("systeme/ViewConnexion.fxml"),
     Vols("vols/ViewVols.fxml"),
     Reservation("reservation/ViewReservation.fxml"),
+    Passager("passager/ViewInsererPassager.fxml"),
     Pays_Villes("pays/ViewAjoutPaysVille.fxml");
+    
 
     // Champs
     private String path;

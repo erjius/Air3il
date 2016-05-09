@@ -100,47 +100,4 @@ public class ServiceReservation implements IServiceReservation {
         
     }
 
-    @Override
-    public void supprimer(int idReservation) throws ExceptionAppli {
-
-        try {
-            managerService.verifierAutorisationUtilisateur();
-            mapReservations.remove(idReservation);
-        } catch (RuntimeException e) {
-            logger.log(Level.SEVERE, e.getMessage(), e);
-            throw new ExceptionAppli(e);
-        }
-
-    }
-
-    @Override
-    public DtoReservation modifier(DtoReservation reservation) throws ExceptionAppli {
-
-        try {
-            managerService.verifierAutorisationUtilisateur();
-            verifierValiditeDonnees(reservation);
-
-            mapReservations.replace(reservation.getId(), reservation);
-            return reservation;
-        } catch (RuntimeException e) {
-            logger.log(Level.SEVERE, e.getMessage(), e);
-            throw new ExceptionAppli(e);
-        }
-
-    }
-
-    @Override
-    public DtoReservation retrouver(int idReservation) throws ExceptionAppli {
-
-        try {
-            managerService.verifierAutorisationUtilisateur();
-            DtoReservation reservation = mapReservations.get(idReservation);
-            return reservation;
-        } catch (RuntimeException e) {
-            logger.log(Level.SEVERE, e.getMessage(), e);
-            throw new ExceptionAppli(e);
-        }
-
-    }
-
 }

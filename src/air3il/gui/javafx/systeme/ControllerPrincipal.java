@@ -43,7 +43,7 @@ public class ControllerPrincipal implements IControllerJavaFx {
     }
     @FXML
     public void doAfficherReservation(){
-        managerGui.showView(EnumView.Reservation);
+        managerGui.showView(EnumView.Passager);
     }
     
     @FXML

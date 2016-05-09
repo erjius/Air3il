@@ -11,6 +11,7 @@ import air3il.commun.dto.DtoVol;
 import air3il.commun.dto.DtoPays;
 import air3il.commun.dto.DtoVille;
 import air3il.commun.dto.DtoClient;
+import air3il.commun.dto.DtoPassager;
 import air3il.commun.dto.DtoReservation;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -29,14 +30,15 @@ public class ManagerDao implements IManagerDao {
     private final Map<Integer, DtoVille> mapVilles = new LinkedHashMap<>();
     private final Map<Integer, DtoClient> mapClients = new LinkedHashMap<>();
     private final Map<String, DtoReservation> mapReservations = new LinkedHashMap<>();
-    
+    private final Map<Integer, DtoPassager> mapPassagers = new LinkedHashMap<>();
+
 
     private int lastIdCompte;
     private int lastIdVol;
     private int lastIdVille;
     private int lastIdPays;
     private int lastIdClient;
-
+    private int lastIdPassager;   
     // Constructeurs
     public ManagerDao() {
         initMData();
@@ -68,8 +70,12 @@ public class ManagerDao implements IManagerDao {
         return mapReservations;
     }
      
+    
+     public Map<Integer, DtoPassager> getMapPassagers() {
+        return mapPassagers;
+    }
      
-     
+
     public int getNextIdCompte() {
         return ++lastIdCompte;
     }
@@ -88,6 +94,10 @@ public class ManagerDao implements IManagerDao {
 
     public int getNextIdClient() {
         return ++lastIdClient;
+    }
+    
+     public int getNextIdPassager() {
+        return ++lastIdPassager;
     }
 
     @SuppressWarnings("unchecked")

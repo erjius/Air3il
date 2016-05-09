@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="air3il.gui.javafx.passager.ControllerPassager">
+   <children>
+      <TableView fx:id="tableViewPassagers" layoutX="51.0" layoutY="241.0" prefHeight="145.0" prefWidth="498.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="241.0">
+        <columns>
+          <TableColumn fx:id="columnNom" maxWidth="121.0" minWidth="-Infinity" prefWidth="101.0" text="Nom" />
+          <TableColumn fx:id="columnPrenom" maxWidth="114.0" minWidth="-Infinity" prefWidth="114.0" text="Prenom" />
+            <TableColumn fx:id="columnTel" maxWidth="158.0" minWidth="-Infinity" prefWidth="116.0" text="Tel" />
+            <TableColumn fx:id="columnEmail" maxWidth="179.0" minWidth="-Infinity" prefWidth="166.0" text="Email" />
+        </columns>
+      </TableView>
+      <HBox alignment="CENTER" layoutY="200.0" prefHeight="25.0" prefWidth="614.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="Ajouter" mnemonicParsing="false" onAction="#doAjouter" prefHeight="25.0" prefWidth="103.0" text="Ajouter">
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin></Button>
+            <Button fx:id="Supprimer" mnemonicParsing="false" onAction="#doSupprimer" prefHeight="25.0" prefWidth="105.0" text="Supprimer">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <VBox layoutX="1.0" layoutY="2.0" prefHeight="186.0" prefWidth="600.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="45.0" prefWidth="600.0">
+               <children>
+                  <Label text="Nom : ">
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="Nom">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+               </children></HBox>
+            <HBox alignment="CENTER" prefHeight="48.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="64.0" text="Prenom : ">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="Prenom" />
+               </children></HBox>
+            <HBox alignment="CENTER" prefHeight="46.0" prefWidth="600.0">
+               <children>
+                  <Label text="Tel   : ">
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="Tel" />
+               </children></HBox>
+            <HBox alignment="CENTER" prefHeight="41.0" prefWidth="600.0">
+               <children>
+                  <Label text="Email : ">
+                     <HBox.margin>
+                        <Insets right="35.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="Email" />
+               </children></HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

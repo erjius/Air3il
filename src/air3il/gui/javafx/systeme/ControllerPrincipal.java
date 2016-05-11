@@ -54,7 +54,10 @@ public class ControllerPrincipal implements IControllerJavaFx {
     public void doAfficherPaysVilles() {
         managerGui.showView(EnumView.Pays_Villes);
     }
-
+    @FXML
+    public void doAfficherClient() {
+        managerGui.showView(EnumView.Client);
+    }
     // Initialisation du Controller
     @Override
     public void setManagerGui(ManagerGui managerGui) throws Exception {

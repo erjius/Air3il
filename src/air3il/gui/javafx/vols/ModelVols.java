@@ -112,29 +112,11 @@ public final class ModelVols {
     }
 
     public List<DtoVille> lstVilleRechercherAller() throws ExceptionAppli {
-
-        List<DtoVille> lstVille = servicePays.listerToutVille();
-
-        ArrayList<DtoVille> lstVille1 = new ArrayList<>();
-        for (int i = 0; i < lstVille.size(); i++) {
-            if (lstVille.get(i).getPays() == PaysAller) {
-                lstVille1.add(lstVille.get(i));
-            }
-        }
-        return lstVille1;
+        return  servicePays.listerVilleParPays(PaysAller);
     }
 
     public List<DtoVille> lstVilleRechercherRetour() throws ExceptionAppli {
-
-        List<DtoVille> lstVille = servicePays.listerToutVille();
-
-        ArrayList<DtoVille> lstVille1 = new ArrayList<>();
-        for (int i = 0; i < lstVille.size(); i++) {
-            if (lstVille.get(i).getPays() == PaysRetour) {
-                lstVille1.add(lstVille.get(i));
-            }
-        }
-        return lstVille1;
+        return  servicePays.listerVilleParPays(PaysAller);
     }
 
     public void listerLesVols() throws ExceptionAppli {

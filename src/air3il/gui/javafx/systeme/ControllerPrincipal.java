@@ -19,6 +19,8 @@ public class ControllerPrincipal implements IControllerJavaFx {
     // Composants de la vue
     @FXML
     private HBox menuBar;
+    @FXML
+    private Menu menuGestion;
 
     // Actions
     @FXML
@@ -36,19 +38,21 @@ public class ControllerPrincipal implements IControllerJavaFx {
     public void doQuitter() {
         managerGui.getStagePrincipal().close();
     }
+
     @FXML
-    public void doAfficherVols(){
+    public void doAfficherVols() {
         managerGui.showView(EnumView.Vols);
-        
+
     }
+
     @FXML
-    public void doAfficherReservation(){
+    public void doAfficherReservation() {
         managerGui.showView(EnumView.Passager);
     }
-    
+
     @FXML
-    public void doAfficherPaysVilles(){
-    managerGui.showView(EnumView.Pays_Villes);
+    public void doAfficherPaysVilles() {
+        managerGui.showView(EnumView.Pays_Villes);
     }
 
     // Initialisation du Controller
@@ -73,8 +77,12 @@ public class ControllerPrincipal implements IControllerJavaFx {
         menuBar.setVisible(false);
 
         if (modelSysteme.getCompteConnecte() != null) {
-            
             menuBar.setVisible(true);
+            if (modelSysteme.getCompteConnecte().getPropType().getValue().equals("ADMINISTRATEUR")) {
+                menuGestion.setVisible(true);
+            } else {
+                menuGestion.setVisible(false);        
+            }
         }
     }
 

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane focusTraversable="true" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="air3il.gui.javafx.systeme.ControllerPrincipal">
+<BorderPane focusTraversable="true" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="air3il.gui.javafx.systeme.ControllerPrincipal">
     <top>
       <HBox fx:id="menuBar" visible="false" BorderPane.alignment="CENTER">
          <children>
@@ -19,7 +19,13 @@
                       <MenuItem mnemonicParsing="false" onAction="#doAfficherVols" text="Vols" />
                         <MenuItem mnemonicParsing="false" text="Clients" />
                         <MenuItem mnemonicParsing="false" onAction="#doAfficherReservation" text="Réservations" />
-                        <MenuItem mnemonicParsing="false" onAction="#doAfficherPaysVilles" text="Pays/villes" />
+                    </items>
+                  </Menu>
+                  <Menu fx:id="menuGestion" mnemonicParsing="false" text="Gestion" visible="false">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Utilisateurs" />
+                      <MenuItem mnemonicParsing="false" onAction="#doAfficherPaysVilles" text="Destinations" />
+                        <MenuItem mnemonicParsing="false" text="Vols" />
                     </items>
                   </Menu>
                       <Menu mnemonicParsing="false" text="Etat">

@@ -81,7 +81,7 @@ public class ControllerPrincipal implements IControllerJavaFx {
             if (modelSysteme.getCompteConnecte().getPropType().getValue().equals("ADMINISTRATEUR")) {
                 menuGestion.setVisible(true);
             } else {
-                menuGestion.setVisible(false);        
+                menuGestion.setVisible(false);
             }
         }
     }

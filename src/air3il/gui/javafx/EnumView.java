@@ -10,7 +10,7 @@ public enum EnumView {
     Vols("vols/ViewVols.fxml"),
     Reservation("reservation/ViewReservation.fxml"),
     Passager("passager/ViewInsererPassager.fxml"),
-    Client("Client/ViewCleint.fxml"),
+    Client("client/ViewClient.fxml"),
     Pays_Villes("pays/ViewAjoutPaysVille.fxml");
     
 

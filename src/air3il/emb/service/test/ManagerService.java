@@ -1,5 +1,6 @@
 package air3il.emb.service.test;
 
+import air3il.commun.dto.DtoClient;
 import java.lang.reflect.Constructor;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
@@ -41,6 +42,12 @@ public class ManagerService implements IManagerService {
     private  List<DtoVille> listVille=new ArrayList<>();
     private  List<DtoVol> listVol=new ArrayList<>();
     private final Map<Integer, DtoPassager> mapPassagers = new LinkedHashMap<>();
+    private final Map<Integer, DtoClient> mapClient = new LinkedHashMap<>();
+
+    public Map<Integer, DtoClient> getMapClient() {
+        return mapClient;
+    }
+    
     
     public void setListVille(List<DtoVille> listVille) {
         this.listVille = listVille;

@@ -45,6 +45,8 @@ public class ControllerClient implements IControllerJavaFx {
     Button Suivant;
     @FXML
     Button Rechercher;
+    @FXML
+    Button Supprimer;
     //@FXML
     //private Button buttonSupprimer;
     @FXML

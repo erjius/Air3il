@@ -29,6 +29,8 @@ public interface IServicePays {
 
     public List<DtoPays> listerToutPays() throws ExceptionAppli;
     
+    public List<DtoVille> listerVilleParPays(DtoPays dto) throws ExceptionAppli;
+    
     public DtoVille insererVille(DtoVille dto) throws ExceptionAppli, ExceptionValidation;
 
     public DtoVille modifierVille(DtoVille dto) throws ExceptionAppli, ExceptionValidation;

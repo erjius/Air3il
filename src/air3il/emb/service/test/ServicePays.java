@@ -67,7 +67,19 @@ public class ServicePays implements IServicePays {
             throw new ExceptionAppli(e);
         }
     }
-
+    
+    @Override
+    public List<DtoVille> listerVilleParPays(DtoPays pays) throws ExceptionAppli
+    {
+       List<DtoVille> listevilles = new ArrayList<>();
+       for(DtoVille v : listerToutVille()){
+           if(v.getPays().equals(pays)){
+               listevilles.add(v);
+           }
+       }
+       return listevilles;
+    }
+    
     @Override
     public void supprimerPays(int idPays) throws ExceptionAppli {
         try {

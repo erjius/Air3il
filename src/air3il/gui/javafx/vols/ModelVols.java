@@ -10,6 +10,7 @@ import air3il.commun.service.IManagerService;
 import air3il.commun.service.IServicePays;
 import air3il.commun.service.IServiceReservation;
 import air3il.commun.service.IServiceVols;
+import air3il.gui.javafx.EnumView;
 import com.sun.javafx.collections.ObservableListWrapper;
 import java.util.ArrayList;
 import java.util.Date;
@@ -112,29 +113,11 @@ public final class ModelVols {
     }
 
     public List<DtoVille> lstVilleRechercherAller() throws ExceptionAppli {
-
-        List<DtoVille> lstVille = servicePays.listerToutVille();
-
-        ArrayList<DtoVille> lstVille1 = new ArrayList<>();
-        for (int i = 0; i < lstVille.size(); i++) {
-            if (lstVille.get(i).getPays() == PaysAller) {
-                lstVille1.add(lstVille.get(i));
-            }
-        }
-        return lstVille1;
+        return  servicePays.listerVilleParPays(PaysAller);
     }
 
     public List<DtoVille> lstVilleRechercherRetour() throws ExceptionAppli {
-
-        List<DtoVille> lstVille = servicePays.listerToutVille();
-
-        ArrayList<DtoVille> lstVille1 = new ArrayList<>();
-        for (int i = 0; i < lstVille.size(); i++) {
-            if (lstVille.get(i).getPays() == PaysRetour) {
-                lstVille1.add(lstVille.get(i));
-            }
-        }
-        return lstVille1;
+        return  servicePays.listerVilleParPays(PaysRetour);
     }
 
     public void listerLesVols() throws ExceptionAppli {
@@ -161,7 +144,7 @@ public final class ModelVols {
         serviceReservation=managerService.getService(IServiceReservation.class);
         listePays.addAll(servicePays.listerToutPays());
         lstVol = null;
-//        lstVol = new ObservableListWrapper<>(serviceVols.lstToutVol());
+        reservationsClients.clear();
 
     }
 
@@ -197,7 +180,7 @@ public final class ModelVols {
         
         // set les listes
         
-       // managerGui.showView(EnumView.Reservation);
+       managerGui.showView(EnumView.Reservation);
     }
     public void cleanAll(){
         NbPassager = 0;
@@ -207,7 +190,6 @@ public final class ModelVols {
         VilleRetour=null;
         dateAller=null;
         dateRetour=null;
-        reservationsClients.clear();
         lstVol=null;
         lstVolR=null;
         volAller=null;

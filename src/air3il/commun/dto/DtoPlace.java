@@ -15,7 +15,7 @@ public class DtoPlace implements Serializable {
 
     private int id;
 
-    private char ref;
+    private String ref;
     
     private float coef;
 
@@ -27,11 +27,11 @@ public class DtoPlace implements Serializable {
         this.id = id;
     }
 
-    public char getRef() {
+    public String getRef() {
         return ref;
     }
 
-    public void setRef(char ref) {
+    public void setRef(String ref) {
         this.ref = ref;
     }
 
@@ -48,7 +48,7 @@ public class DtoPlace implements Serializable {
         super();
     }
 
-    public DtoPlace(int id, char ref, float coef) {
+    public DtoPlace(int id, String ref, float coef) {
         super();
         this.id = id;
         this.ref = ref;

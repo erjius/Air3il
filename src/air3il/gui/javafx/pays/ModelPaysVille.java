@@ -73,9 +73,10 @@ public class ModelPaysVille {
 
     public void envoyer() throws ExceptionAppli ,ExceptionValidation{
         if(pays.getId()==0){
-            obslistePays.add(servicePays.insererPays(pays));
+            pays = servicePays.insererPays(pays);
+            obslistePays.add(pays);
         }
-        
+        ville.setPays(pays);
         servicePays.insererVille(ville);
     }
 }

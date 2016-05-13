@@ -12,7 +12,7 @@ import air3il.commun.exception.ExceptionAppli;
 import air3il.commun.exception.ExceptionValidation;
 import air3il.commun.service.IServiceClient;
 
-public abstract class ServiceClient implements IServiceClient {
+public class ServiceClient implements IServiceClient {
 
     // Logger
     private static final Logger logger = Logger.getLogger(ServiceClient.class.getName());
@@ -103,6 +103,11 @@ public abstract class ServiceClient implements IServiceClient {
         if (dto.getPrenom() == null || dto.getPrenom().isEmpty()) {
             message.append("\nLe Prenom est absent.");
         }
+    }
+
+    @Override
+    public DtoClient ajoutClient(DtoClient client) throws ExceptionAppli {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -10,6 +10,7 @@ import air3il.commun.service.IManagerService;
 import air3il.commun.service.IServicePays;
 import air3il.commun.service.IServiceReservation;
 import air3il.commun.service.IServiceVols;
+import air3il.gui.javafx.EnumView;
 import com.sun.javafx.collections.ObservableListWrapper;
 import java.util.ArrayList;
 import java.util.Date;
@@ -116,7 +117,7 @@ public final class ModelVols {
     }
 
     public List<DtoVille> lstVilleRechercherRetour() throws ExceptionAppli {
-        return  servicePays.listerVilleParPays(PaysAller);
+        return  servicePays.listerVilleParPays(PaysRetour);
     }
 
     public void listerLesVols() throws ExceptionAppli {
@@ -179,7 +180,7 @@ public final class ModelVols {
         
         // set les listes
         
-       // managerGui.showView(EnumView.Reservation);
+       managerGui.showView(EnumView.Reservation);
     }
     public void cleanAll(){
         NbPassager = 0;

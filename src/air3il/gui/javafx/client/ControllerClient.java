@@ -1,5 +1,5 @@
 
-package air3il.gui.javafx.client;
+package air3il.gui.javafx.Client;
 
 import air3il.gui.javafx.EnumView;
 import air3il.gui.javafx.IControllerJavaFx;
@@ -45,8 +45,6 @@ public class ControllerClient implements IControllerJavaFx {
     Button Suivant;
     @FXML
     Button Rechercher;
-    @FXML
-    Button Supprimer;
     //@FXML
     //private Button buttonSupprimer;
     @FXML
@@ -112,7 +110,7 @@ public class ControllerClient implements IControllerJavaFx {
     // Initialisations
     @Override
     public void setManagerGui(ManagerGui managerGui) throws Exception {
-        System.err.println("ici");
+
         // Injection de dépendances
         this.managerGui = managerGui;
         modelClient = managerGui.getModel(ModelClient.class);

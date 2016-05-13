@@ -1,4 +1,4 @@
-package air3il.gui.javafx.client;
+package air3il.gui.javafx.Client;
 
 import air3il.commun.dto.DtoClient;
 import air3il.commun.exception.ExceptionAppli;

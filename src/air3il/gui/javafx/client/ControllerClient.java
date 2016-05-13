@@ -1,5 +1,4 @@
-
-package air3il.gui.javafx.Client;
+package air3il.gui.javafx.client;
 
 import air3il.gui.javafx.EnumView;
 import air3il.gui.javafx.IControllerJavaFx;
@@ -45,6 +44,8 @@ public class ControllerClient implements IControllerJavaFx {
     Button Suivant;
     @FXML
     Button Rechercher;
+    @FXML
+    Button Supprimer;
     //@FXML
     //private Button buttonSupprimer;
     @FXML
@@ -62,18 +63,18 @@ public class ControllerClient implements IControllerJavaFx {
     // Champs
     private ManagerGui managerGui;
     private ModelClient modelClient;
-
+    
     @FXML
     private void doAjouter() {
-          
+        
         try {
-            modelClient.preparerAjouter();
+            modelClient.ajouter();
             modelClient.ValiderMiseAJour();
             initChamp();
             managerGui.showView(EnumView.Client);
             //System.out.println("ok pour doAjouter");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("   Inséré !! ");
+            alert.setHeaderText("   Insertion reussite !! ");
             alert.show();
         } catch (Exception e) {
             managerGui.afficherErreur(e);
@@ -81,12 +82,17 @@ public class ControllerClient implements IControllerJavaFx {
     }
 
     @FXML
+    private void doSuivant() {
+        managerGui.showView(EnumView.Reservation);
+    }
+    
+    @FXML
     public void doSupprimer() {
         int index = tableViewClient.getSelectionModel().getFocusedIndex();
-
+        
         if (index != -1) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setHeaderText("êtes vous sûre ?");
+            alert.setHeaderText("Voulez vous vraiment supprimer ?");
             ButtonType buttonTypeOUI = new ButtonType("OUI");
             ButtonType buttonTypeNON = new ButtonType("NON");
             alert.getButtonTypes().setAll(buttonTypeOUI, buttonTypeNON);
@@ -97,13 +103,13 @@ public class ControllerClient implements IControllerJavaFx {
                 try {
                     //suppression de la ligne selectionnée
                     modelClient.getObsListClient().remove(index);
-
+                    
                 } catch (Exception e) {
                 }
             } else if (result.get() == buttonTypeNON) {
                 // ... user chose "NON"
             }
-
+            
         }
     }
 
@@ -123,24 +129,19 @@ public class ControllerClient implements IControllerJavaFx {
         Tel.textProperty().bindBidirectional(ViewClient.getPropTel());
         tableViewClient.setItems(modelClient.getObsListClient());
         
-        tableViewClient.setItems(modelClient.getObsListClient());
-
+        
         tableViewClient.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-
+                
             }
         });
-
-        tableViewClient.setItems(modelClient.getObsListClient());
-
         columnNom.setCellValueFactory(t -> t.getValue().getPropNom());
         columnPrenom.setCellValueFactory(t -> t.getValue().getPropPrenom());
         columnTel.setCellValueFactory(t -> t.getValue().getPropTel());
         columnEmail.setCellValueFactory(t -> t.getValue().getPropEmail());
         
-
     }
-
+    
     public void initChamp() {
         Nom.setText("");
         Prenom.setText(" ");
@@ -149,7 +150,7 @@ public class ControllerClient implements IControllerJavaFx {
         Nom_recherche.setText("");
         Prenom_recherche.setText("");
     }
-
+    
     @FXML
     private void gererClicSurListe(javafx.scene.input.MouseEvent event) {
         if (event.getButton().equals(MouseButton.PRIMARY)) {
@@ -158,5 +159,5 @@ public class ControllerClient implements IControllerJavaFx {
             }
         }
     }
-
+    
 }

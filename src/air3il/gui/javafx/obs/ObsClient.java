@@ -75,8 +75,8 @@ public class ObsClient {
         propPrenom.set(dto.getPrenom());
 //        propPrenom_recherche.set(dto.getPrenom_recherche());
 //        propNom_recherche.set(dto.getNom_recherche());
-//        propEmail.set(dto.getEmail());
-//        propTel.set(dto.getTel());
+        propEmail.set(dto.getEmail());
+        propTel.set(dto.getNumtel());
     }
 
     public DtoClient creerDto() {
@@ -86,6 +86,8 @@ public class ObsClient {
         }
         dto.setNom(propNom.get());
         dto.setPrenom(propPrenom.get());
+        dto.setEmail(propEmail.get());
+        dto.setNumtel(propTel.get());
         return dto;
     }
 

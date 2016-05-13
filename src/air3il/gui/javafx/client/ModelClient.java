@@ -1,4 +1,4 @@
-package air3il.gui.javafx.Client;
+package air3il.gui.javafx.client;
 
 import air3il.commun.dto.DtoClient;
 import air3il.commun.exception.ExceptionAppli;
@@ -73,7 +73,7 @@ public final class ModelClient {
     }
 
     // Actions
-    public void preparerAjouter() {
+    public void ajouter() throws ExceptionAppli {
         modeVue = CREER;
         DtoClient dto;
         ClientCourant = null;
@@ -82,7 +82,15 @@ public final class ModelClient {
             ClientCourant = new ObsClient(dto);
         } catch (ExceptionAppli ex) {
             Logger.getLogger(ModelClient.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
         }
+                // Test si c'est un ajout ou une modificaiton
+        if (modeVue == CREER) {
+            obsListClient.add(new ObsClient(dto));
+        }
+
+        // Trie la list
+        trierListe();
     }
 
     public void preparerModifier(ObsClient client) {
@@ -113,14 +121,6 @@ public final class ModelClient {
         if (message.length() > 0) {
             throw new ExceptionValidation(message.toString().substring(1));
         }
-
-        // Test si c'est un ajout ou une modificaiton
-        if (modeVue == CREER) {
-            obsListClient.add(ClientCourant);
-        }
-
-        // Trie la list
-        trierListe();
     }
 
     public void supprimer(ObsClient client) throws Exception {

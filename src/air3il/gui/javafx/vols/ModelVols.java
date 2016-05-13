@@ -144,7 +144,7 @@ public final class ModelVols {
         serviceReservation=managerService.getService(IServiceReservation.class);
         listePays.addAll(servicePays.listerToutPays());
         lstVol = null;
-//        lstVol = new ObservableListWrapper<>(serviceVols.lstToutVol());
+        reservationsClients.clear();
 
     }
 
@@ -190,7 +190,6 @@ public final class ModelVols {
         VilleRetour=null;
         dateAller=null;
         dateRetour=null;
-        reservationsClients.clear();
         lstVol=null;
         lstVolR=null;
         volAller=null;

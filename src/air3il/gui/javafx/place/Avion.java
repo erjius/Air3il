@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -98,7 +97,7 @@ public final class Avion extends Region {
         selectionModel = new SingleSelectionModel<DtoPlace>() {
             @Override
             protected DtoPlace getModelItem(int index) {
-                if(index<0){
+                if (index < 0) {
                     return null;
                 }
                 return getItems().get(index);
@@ -138,17 +137,6 @@ public final class Avion extends Region {
                         }
                     }
                 });
-        selectionModel.selectedItemProperty().addListener(new ChangeListener<DtoPlace>() {
-            @Override
-            public void changed(ObservableValue<? extends DtoPlace> observable, DtoPlace oldValue, DtoPlace newValue) {
-                if(oldValue!=null){
-                    System.out.println("Unselect : "+oldValue.getRef());
-                }
-                if(newValue != null){
-                    System.out.println("Unselect : "+newValue.getRef());
-                }
-            }
-        });
     }
 
     public void setItems(ObservableList<DtoPlace> items) {
@@ -162,7 +150,14 @@ public final class Avion extends Region {
         return items;
     }
 
+    public SelectionModel<DtoPlace> getSelectionModel() {
+        return selectionModel;
+    }
+
     private void draw() {
+        if (background == null) {
+            return;
+        }
         double ratio = background.getWidth() / background.getHeight();
         double width = Math.min(getWidth(), getHeight() * ratio);
         double height = Math.min(getWidth(), getWidth() / ratio);
@@ -180,14 +175,14 @@ public final class Avion extends Region {
         });
         DtoPlace selected = selectionModel.getSelectedItem();
         gc.setFill(Color.BLUE);
-        items.forEach((DtoPlace place)->{
-             Point2D p = seats.get(place.getId());
-            if(place == selected){
+        items.forEach((DtoPlace place) -> {
+            Point2D p = seats.get(place.getId());
+            if (place == selected) {
                 gc.setFill(Color.GREEN);
                 gc.fillOval(p.getX() - 1, p.getY() - 1, 18, 18);
                 gc.setFill(Color.BLUE);
-            }else{
-                 gc.fillOval(p.getX(), p.getY(), 16, 16);
+            } else {
+                gc.fillOval(p.getX(), p.getY(), 16, 16);
             }
         });
     }

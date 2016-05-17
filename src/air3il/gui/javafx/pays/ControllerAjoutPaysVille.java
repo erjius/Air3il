@@ -2,6 +2,7 @@ package air3il.gui.javafx.pays;
 
 import air3il.commun.dto.DtoPays;
 import air3il.commun.exception.ExceptionAppli;
+import air3il.commun.exception.ExceptionValidation;
 import air3il.gui.javafx.EnumView;
 import air3il.gui.javafx.IControllerJavaFx;
 import air3il.gui.javafx.ManagerGui;
@@ -75,9 +76,10 @@ public class ControllerAjoutPaysVille implements IControllerJavaFx {
              
             modelPaysVille.envoyer();
 
-
+        }catch(ExceptionValidation ex){
+            managerGui.afficherErreur(ex);
+            Logger.getLogger(ControllerAjoutPaysVille.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExceptionAppli ex) {
-            
             Logger.getLogger(ControllerAjoutPaysVille.class.getName()).log(Level.SEVERE, null, ex);
             basculer_mode();
         }

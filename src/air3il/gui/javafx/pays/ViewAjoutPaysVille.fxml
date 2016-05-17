@@ -14,13 +14,8 @@
       <VBox fx:id="AjouterlePays" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
          <children>
             <Button fx:id="nouveau_pays" mnemonicParsing="false" onAction="#basculer_mode" text="Nouveau Pays" VBox.vgrow="NEVER" />
-            <StackPane prefHeight="150.0" prefWidth="200.0">
+            <StackPane fx:id="satckp" prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <ListView fx:id="liste_pays" prefHeight="200.0" prefWidth="200.0" />
-                     </children>
-                  </VBox>
                   <VBox alignment="TOP_CENTER">
                      <children>
                         <Label fx:id="label_nouveau_pays" text="Nom du pays" visible="false" />
@@ -29,6 +24,11 @@
                      <StackPane.margin>
                         <Insets right="15.0" top="15.0" />
                      </StackPane.margin>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ListView fx:id="liste_pays" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
                   </VBox>
                </children>
             </StackPane>

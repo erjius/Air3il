@@ -11,8 +11,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.StackPane;
 
 public class ControllerAjoutPaysVille implements IControllerJavaFx {
 
@@ -33,15 +35,18 @@ public class ControllerAjoutPaysVille implements IControllerJavaFx {
     @FXML
     ListView<DtoPays> liste_pays;
 
+    @FXML
+    StackPane satckp;
+
     ModelPaysVille modelPaysVille;
 
     // Initialisation du Controller
     @Override
     public void setManagerGui(ManagerGui managerGui) throws Exception {
         this.managerGui = managerGui;
-        liste_pays.managedProperty().bind(liste_pays.visibleProperty());
-        label_nouveau_pays.managedProperty().bind(label_nouveau_pays.visibleProperty().not());
-        nom_nouveau_pays.managedProperty().bind(nom_nouveau_pays.visibleProperty().not());
+        //liste_pays.managedProperty().bind(liste_pays.visibleProperty());
+        //label_nouveau_pays.managedProperty().bind(label_nouveau_pays.visibleProperty().not());
+        //nom_nouveau_pays.managedProperty().bind(nom_nouveau_pays.visibleProperty().not());
         modelPaysVille = managerGui.getModel(ModelPaysVille.class);
         nom_de_laville.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             modelPaysVille.setNewVille(newValue);
@@ -49,9 +54,9 @@ public class ControllerAjoutPaysVille implements IControllerJavaFx {
         liste_pays.setItems(modelPaysVille.chargerListePays());
         liste_pays.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change<? extends DtoPays> c) -> {
             c.next();
-            if(c.wasAdded()){
+            if (c.wasAdded()) {
                 modelPaysVille.setPays(c.getList().get(0));
-            }else{
+            } else {
                 modelPaysVille.setPays(null);
             }
         });
@@ -62,6 +67,7 @@ public class ControllerAjoutPaysVille implements IControllerJavaFx {
 
     public void soumettre() {
         try {
+            basculer_mode();
             modelPaysVille.envoyer();
         } catch (ExceptionAppli ex) {
             Logger.getLogger(ControllerAjoutPaysVille.class.getName()).log(Level.SEVERE, null, ex);
@@ -74,10 +80,13 @@ public class ControllerAjoutPaysVille implements IControllerJavaFx {
         liste_pays.setVisible(!modeajout);
         label_nouveau_pays.setVisible(modeajout);
         nom_nouveau_pays.setVisible(modeajout);
-        if(modeajout){
+        Node n = satckp.getChildren().remove(0);
+ 
+        satckp.getChildren().add(n);
+        if (modeajout) {
             modelPaysVille.setNewPays(nom_nouveau_pays.getText());
-        }else{
-            liste_pays.getSelectionModel().getSelectedItems().forEach((selection)->{
+        } else {
+            liste_pays.getSelectionModel().getSelectedItems().forEach((selection) -> {
                 modelPaysVille.setPays(selection);
             });
         }

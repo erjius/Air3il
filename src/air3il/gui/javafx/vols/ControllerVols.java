@@ -87,7 +87,7 @@ public class ControllerVols implements IControllerJavaFx {
         listviews.setItems(null);
         listviews.setItems(null);
         onglets.selectionModelProperty().get().select(ongletAller);
-        nbPassager.setValue(1);
+        
         doMasquerDateretour();
         paysAller.setValue(null);
         paysRetour.setValue(null);        
@@ -145,6 +145,7 @@ public class ControllerVols implements IControllerJavaFx {
         nbPassager.setItems(doRemplirComboBox());
         dateAller.setValue(LocalDate.now());
         dateRetour.setValue(LocalDate.now());
+        nbPassager.setValue(1);
        // doSubmit();
 //recuperer les données de text 
         paysAller.setItems(new ObservableListWrapper<>(modelVols.getListePays()));

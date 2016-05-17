@@ -80,10 +80,9 @@ public class ControllerVols implements IControllerJavaFx {
     }
     public void doSubmit(){
         modelVols.submit();
-        modelVols.cleanAll();
-        nbPassager.setItems(doRemplirComboBox());
-        dateAller.setValue(LocalDate.now());
-        dateRetour.setValue(LocalDate.now());
+
+      //  modelVols.cleanAll();
+        
         allerSimple.getToggleGroup().selectToggle(allerSimple);
         listviews.setItems(null);
         listviews.setItems(null);
@@ -91,8 +90,7 @@ public class ControllerVols implements IControllerJavaFx {
         nbPassager.setValue(1);
         doMasquerDateretour();
         paysAller.setValue(null);
-        paysRetour.setValue(null);
-        
+        paysRetour.setValue(null);        
     }
     public void doRechercheVol() throws ExceptionAppli {
         modelVols.setVilleAller(villeAller.getValue());
@@ -144,8 +142,10 @@ public class ControllerVols implements IControllerJavaFx {
         this.managerGui = managerGui;
         modelVols = managerGui.getModel(ModelVols.class);
         
-        
-        doSubmit();
+        nbPassager.setItems(doRemplirComboBox());
+        dateAller.setValue(LocalDate.now());
+        dateRetour.setValue(LocalDate.now());
+       // doSubmit();
 //recuperer les données de text 
         paysAller.setItems(new ObservableListWrapper<>(modelVols.getListePays()));
         paysAller.valueProperty().addListener(new ChangeListener<DtoPays>() {

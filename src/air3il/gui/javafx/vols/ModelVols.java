@@ -15,6 +15,7 @@ import com.sun.javafx.collections.ObservableListWrapper;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public final class ModelVols {
@@ -34,10 +35,14 @@ public final class ModelVols {
     private final ArrayList<DtoPays> listePays = new ArrayList<>();
     private ObservableList<DtoVol> lstVol;
     private ObservableList<DtoVol> lstVolR;
-    private List<DtoReservation> reservationsClients = new ArrayList<>();
+    private final ObservableList<DtoReservation> reservationsClients = FXCollections.observableArrayList();
 
     public DtoVol getVolAller() {
         return volAller;
+    }
+
+    public ObservableList<DtoReservation> getReservationsClients() {
+        return reservationsClients;
     }
 
     public DtoVol getVolRetour() {
@@ -113,11 +118,11 @@ public final class ModelVols {
     }
 
     public List<DtoVille> lstVilleRechercherAller() throws ExceptionAppli {
-        return  servicePays.listerVilleParPays(PaysAller);
+        return servicePays.listerVilleParPays(PaysAller);
     }
 
     public List<DtoVille> lstVilleRechercherRetour() throws ExceptionAppli {
-        return  servicePays.listerVilleParPays(PaysRetour);
+        return servicePays.listerVilleParPays(PaysRetour);
     }
 
     public void listerLesVols() throws ExceptionAppli {
@@ -141,7 +146,7 @@ public final class ModelVols {
         this.managerService = managerGui.getManagerService();
         serviceVols = managerService.getService(IServiceVols.class);
         servicePays = managerService.getService(IServicePays.class);
-        serviceReservation=managerService.getService(IServiceReservation.class);
+        serviceReservation = managerService.getService(IServiceReservation.class);
         listePays.addAll(servicePays.listerToutPays());
         lstVol = null;
         reservationsClients.clear();
@@ -149,8 +154,9 @@ public final class ModelVols {
     }
 
     public void submit() {
+        ArrayList<DtoReservation> nres = new ArrayList<>(NbPassager);
         for (int i = 0; i < NbPassager; i++) {
-            reservationsClients.add(
+            nres.add(
                     new DtoReservation(
                             volAller,
                             null,
@@ -164,25 +170,24 @@ public final class ModelVols {
         }
         if (volRetour != null) {
             for (int i = 0; i < NbPassager; i++) {
-                reservationsClients.add(
+                nres.add(
                         new DtoReservation(
-                                volAller,
+                                volRetour,
                                 null,
                                 null,
                                 managerService.getCompteConnecte(),
                                 null,
                                 null,
-                                volAller.getPrix_base()
+                                volRetour.getPrix_base()
                         )
                 );
             }
         }
-        
+        reservationsClients.setAll(nres);
         // set les listes
-        
-       managerGui.showView(EnumView.Reservation);
+        managerGui.showView(EnumView.Reservation);
     }
-    public void cleanAll(){
+    /*  public void cleanAll(){
         NbPassager = 0;
         PaysAller = null;
         PaysRetour =null;
@@ -195,5 +200,5 @@ public final class ModelVols {
         volAller=null;
         volRetour=null;
         
-    }
+    }*/
 }

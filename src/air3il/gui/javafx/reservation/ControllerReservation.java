@@ -9,7 +9,7 @@ import air3il.gui.javafx.IControllerJavaFx;
 import air3il.gui.javafx.ManagerGui;
 import air3il.gui.javafx.obs.ObsReservation;
 import air3il.gui.javafx.vols.ModelVols;
-import air3il.gui.javafx.vueavion.Avion;
+import air3il.gui.javafx.place.Avion;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -210,9 +210,8 @@ public class ControllerReservation implements IControllerJavaFx {
             }
         }
         //on cree l'avion et insere les donnees
-        //avion = new Avion("air3il/gui/javafx/place/a320.png", seats);
-        avion = new Avion("air3il/gui/javafx/vueavion/a320.png", seats);
-
+        avion = new Avion("air3il/gui/javafx/place/a320.png", seats);
+        
         // ajout des places disponibles (selectionables)
         ArrayList<DtoPlace> places = new ArrayList<>();
         places.add(new DtoPlace(0, "a1", 0));
@@ -252,6 +251,13 @@ public class ControllerReservation implements IControllerJavaFx {
                       
                     }
             });*/
+        
+        for(DtoReservation dto: modelVols.getReservationsClients()){
+            
+            System.out.println(dto.getVol());
+        }
+        
+        
     }
 
 }

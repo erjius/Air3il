@@ -2,8 +2,11 @@ package air3il.gui.javafx.pays;
 
 import air3il.commun.dto.DtoPays;
 import air3il.commun.exception.ExceptionAppli;
+import air3il.gui.javafx.EnumView;
 import air3il.gui.javafx.IControllerJavaFx;
 import air3il.gui.javafx.ManagerGui;
+import air3il.gui.javafx.systeme.ControllerPrincipal;
+import air3il.gui.javafx.systeme.ModelSysteme;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
@@ -39,17 +42,19 @@ public class ControllerAjoutPaysVille implements IControllerJavaFx {
     StackPane satckp;
 
     ModelPaysVille modelPaysVille;
+  
 
     // Initialisation du Controller
     @Override
     public void setManagerGui(ManagerGui managerGui) throws Exception {
         this.managerGui = managerGui;
-        //liste_pays.managedProperty().bind(liste_pays.visibleProperty());
-        //label_nouveau_pays.managedProperty().bind(label_nouveau_pays.visibleProperty().not());
-        //nom_nouveau_pays.managedProperty().bind(nom_nouveau_pays.visibleProperty().not());
+        
+        liste_pays.managedProperty().bind(liste_pays.visibleProperty());
+        label_nouveau_pays.managedProperty().bind(label_nouveau_pays.visibleProperty().not());
+        nom_nouveau_pays.managedProperty().bind(nom_nouveau_pays.visibleProperty().not());
         modelPaysVille = managerGui.getModel(ModelPaysVille.class);
         nom_de_laville.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            modelPaysVille.setNewVille(newValue);
+        modelPaysVille.setNewVille(newValue);
         });
         liste_pays.setItems(modelPaysVille.chargerListePays());
         liste_pays.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change<? extends DtoPays> c) -> {
@@ -67,13 +72,18 @@ public class ControllerAjoutPaysVille implements IControllerJavaFx {
 
     public void soumettre() {
         try {
-            basculer_mode();
+             basculer_mode();
             modelPaysVille.envoyer();
+
+
         } catch (ExceptionAppli ex) {
+            
             Logger.getLogger(ControllerAjoutPaysVille.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
 
     }
+    
 
     public void basculer_mode() {
         modeajout = !modeajout;

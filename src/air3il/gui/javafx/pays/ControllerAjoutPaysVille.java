@@ -72,14 +72,14 @@ public class ControllerAjoutPaysVille implements IControllerJavaFx {
 
     public void soumettre() {
         try {
-             basculer_mode();
+             
             modelPaysVille.envoyer();
 
 
         } catch (ExceptionAppli ex) {
             
             Logger.getLogger(ControllerAjoutPaysVille.class.getName()).log(Level.SEVERE, null, ex);
-            
+            basculer_mode();
         }
 
     }

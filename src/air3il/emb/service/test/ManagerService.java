@@ -305,8 +305,6 @@ public class ManagerService implements IManagerService {
             DtoVol Vol1 = new DtoVol(1, dateD1, dateA1, "Rien", prix, Paris, Saigon);
             DtoVol Vol2 = new DtoVol(2, dateD2, dateA2, "Rien", prix1, Saigon, Paris);
             DtoVol Vol3 = new DtoVol(3, dateD3, dateA3, "Rien", prix2, Paris, NY);
-            DtoVol Vol4 = new DtoVol(4, dateD1, dateA1, "Rien", prix, Paris, Saigon);
-            DtoVol Vol5 = new DtoVol(5, dateD2, dateA2, "Rien", prix1, Saigon, Paris);
             DtoVol Vol6 = new DtoVol(6, dateD3, dateA3, "Rien", prix2, Paris, NY);
             DtoVol Vol7 = new DtoVol(1, dateD4, dateA4, "Rien", prix7, Paris, Londres);
             DtoVol Vol8 = new DtoVol(2, dateD5, dateA5, "Rien", prix8, Madrid, Lyon);
@@ -317,8 +315,6 @@ public class ManagerService implements IManagerService {
             listVol.add(Vol1);
             listVol.add(Vol2);
             listVol.add(Vol3);
-             listVol.add(Vol4);
-            listVol.add(Vol5);
             listVol.add(Vol6);
              listVol.add(Vol7);
             listVol.add(Vol8);

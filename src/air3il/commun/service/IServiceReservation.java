@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package air3il.commun.service;
 
 import air3il.commun.dto.DtoReservation;
@@ -15,7 +11,16 @@ import java.util.List;
  */
 public interface IServiceReservation {
     
-   	public DtoReservation inserer( DtoReservation dto ) throws ExceptionAppli;
+    
+    	
+	public DtoReservation inserer( DtoReservation dto ) throws ExceptionAppli;
+	
+	public DtoReservation	modifier( DtoReservation dto ) throws ExceptionAppli;
+	
+	public void	supprimer( int idReservation ) throws ExceptionAppli;
+	
+	public DtoReservation retrouver( int idReservation ) throws ExceptionAppli;
 	
 	public List<DtoReservation> listerTout() throws ExceptionAppli;
+	
 }

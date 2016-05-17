@@ -11,7 +11,6 @@ import air3il.commun.dto.DtoVol;
 import air3il.commun.dto.DtoPays;
 import air3il.commun.dto.DtoVille;
 import air3il.commun.dto.DtoClient;
-import air3il.commun.dto.DtoPassager;
 import air3il.commun.dto.DtoReservation;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -29,57 +28,50 @@ public class ManagerDao implements IManagerDao {
     private final Map<Integer, DtoPays> mapPays = new LinkedHashMap<>();
     private final Map<Integer, DtoVille> mapVilles = new LinkedHashMap<>();
     private final Map<Integer, DtoClient> mapClients = new LinkedHashMap<>();
-    private final Map<String, DtoReservation> mapReservations = new LinkedHashMap<>();
-    private final Map<Integer, DtoPassager> mapPassagers = new LinkedHashMap<>();
-
+    private final Map<Integer, DtoReservation> mapReservations = new LinkedHashMap<>();
 
     private int lastIdCompte;
     private int lastIdVol;
     private int lastIdVille;
     private int lastIdPays;
     private int lastIdClient;
-    private int lastIdPassager;   
+    private int lastIdPassager;
+    private int lastIdReservation;
+    private int lastIdContact;
     // Constructeurs
     public ManagerDao() {
         initMData();
     }
 
     // Propriéts
-
     public Map<Integer, DtoCompte> getMapComptes() {
         return mapComptes;
     }
 
-     public Map<Integer, DtoVol> getMapVols() {
+    public Map<Integer, DtoVol> getMapVols() {
         return mapVols;
     }
-     
-     public Map<Integer, DtoPays> getMapPays() {
+
+    public Map<Integer, DtoPays> getMapPays() {
         return mapPays;
     }
-     
-     public Map<Integer, DtoVille> getMapVilles() {
+
+    public Map<Integer, DtoVille> getMapVilles() {
         return mapVilles;
     }
-     
-     public Map<Integer, DtoClient> getMapClients() {
+
+    public Map<Integer, DtoClient> getMapClients() {
         return mapClients;
     }
 
-    public Map<String, DtoReservation> getMapReservations() {
+    Map<Integer, DtoReservation> getMapReservations() {
         return mapReservations;
     }
-     
-    
-     public Map<Integer, DtoPassager> getMapPassagers() {
-        return mapPassagers;
-    }
-     
 
     public int getNextIdCompte() {
         return ++lastIdCompte;
     }
-    
+
     public int getNextIdVol() {
         return ++lastIdVol;
     }
@@ -87,7 +79,7 @@ public class ManagerDao implements IManagerDao {
     public int getNextIdVille() {
         return ++lastIdVille;
     }
-    
+
     public int getNextIdPays() {
         return ++lastIdPays;
     }
@@ -95,9 +87,17 @@ public class ManagerDao implements IManagerDao {
     public int getNextIdClient() {
         return ++lastIdClient;
     }
-    
-     public int getNextIdPassager() {
+
+    public int getNextIdPassager() {
         return ++lastIdPassager;
+    }
+
+     int getNextContact() {
+         return ++lastIdContact;
+     }
+
+    public int getNextIdReservation() {
+        return ++lastIdReservation;
     }
 
     @SuppressWarnings("unchecked")
@@ -163,7 +163,7 @@ public class ManagerDao implements IManagerDao {
     private void initMData() {
 
         // Comptes
-        DtoCompte compte1 = new DtoCompte(1,"geek", "geek", "geek", "geek", "ADMINISTRATEUR");
+        DtoCompte compte1 = new DtoCompte(1, "geek", "geek", "geek", "geek", "ADMINISTRATEUR");
         DtoCompte compte2 = new DtoCompte(2, "boss", "boss", "boss", "boss", "HOTESSE");
         DtoCompte compte3 = new DtoCompte(3, "lambda", "lambda", "lambda", "lambda", "HOTESSE");
         lastIdCompte = 3;
@@ -173,5 +173,7 @@ public class ManagerDao implements IManagerDao {
         mapComptes.put(compte3.getId(), compte3);
 
     }
+
+   
 
 }

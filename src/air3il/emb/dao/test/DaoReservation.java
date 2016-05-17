@@ -1,55 +1,67 @@
 package air3il.emb.dao.test;
 
+import air3il.commun.dao.IDaoReservation;
+import air3il.commun.dto.DtoContact;
+import air3il.commun.dto.DtoReservation;
 import java.util.ArrayList;
 import java.util.List;
-
-import air3il.commun.dao.IDaoReservation;
-import air3il.commun.dto.DtoPlace;
-import air3il.commun.dto.DtoReservation;
-import air3il.commun.dto.DtoVille;
-import air3il.commun.dto.DtoVol;
 import java.util.Map;
 
+/**
+ *
+ * @author ARSENE
+ */
 public class DaoReservation implements IDaoReservation {
 
-    // Champs
     private final ManagerDao managerDao;
-    private final Map<String, DtoReservation> mapReservations;
-    private final Map<Integer, DtoVille> mapVilles;
+    private final Map<Integer, DtoReservation> mapReservations;
 
     // Constructeur
     public DaoReservation(ManagerDao managerDao) {
         this.managerDao = managerDao;
         mapReservations = managerDao.getMapReservations();
-        mapVilles = managerDao.getMapVilles();
-    }
-
-    // Actions
-    @Override
-    public DtoReservation inserer(DtoReservation reservation) {
-        mapReservations.put((reservation.getVol().getId() + "-" + reservation.getPlace().getId()), reservation);
-        return  reservation;
     }
 
     @Override
-    public DtoReservation modifier(DtoReservation reservation) {
-        mapReservations.replace((reservation.getVol().getId() + "-" + reservation.getPlace().getId()), reservation);
-        return reservation;
+    public void inserer(DtoReservation reservation) {
+        reservation.setId(managerDao.getNextIdReservation());
+        affecterIdContact(reservation);
+
+        mapReservations.put(reservation.getId(), reservation);
     }
 
     @Override
-    public void supprimer(DtoVol vol, DtoPlace place) {
-        mapReservations.remove(vol.getId() + "-" + place.getId());
+    public void supprimer(int idReservation) {
+        mapReservations.remove(idReservation);
     }
 
     @Override
-    public DtoReservation retrouver(DtoVol vol, DtoPlace place) {
-        return mapReservations.get(vol.getId() + "-" + place.getId());
+    public DtoReservation retrouver(int idReservaton) {
+
+        return mapReservations.get(idReservaton);
+
     }
 
     @Override
     public List<DtoReservation> listerTout() {
         return new ArrayList<>(mapReservations.values());
     }
+
+    @Override
+    public void modifier(DtoReservation reservation) {
+        mapReservations.replace(reservation.getId(), reservation);
+    }
+    
+    
+    	// Méthodes auxiliaires
+	
+	private void affecterIdContact( DtoReservation reservation ) {
+		for( DtoContact t : reservation.getContacts() ) {
+			if ( t.getId() == 0 ) {
+				t.setId( managerDao.getNextContact() );
+			}
+		}
+	}
+
 
 }

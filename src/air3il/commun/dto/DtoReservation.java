@@ -1,6 +1,8 @@
 package air3il.commun.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -8,7 +10,8 @@ import java.util.Objects;
  * @author antoine
  */
 public class DtoReservation implements Serializable {
-
+    private int  id;
+    
     private DtoVol vol;
 
     private DtoPlace place;
@@ -27,9 +30,25 @@ public class DtoReservation implements Serializable {
 
     private String email_pass;
 
+    private List<DtoContact>	contacts = new ArrayList<>();
+    
+    	// Actions
+	
+	public void ajouterContact( DtoContact contact ) {
+		contacts.add( contact );
+	}
+	
+	public void retirerContact( DtoContact contact ) {
+		contacts.remove(contact);
+	}
+	
+    
+    //propriétés
     public DtoVol getVol() {
         return vol;
     }
+    
+  
 
     public void setVol(DtoVol vol) {
         this.vol = vol;
@@ -50,7 +69,13 @@ public class DtoReservation implements Serializable {
     public void setClient(DtoClient client) {
         this.client = client;
     }
-
+     public int getId() {
+        return id;
+    }
+     
+     public  void setId(int id){
+         this.id=id;
+     }
     public DtoCompte getUtilisateur() {
         return utilisateur;
     }
@@ -141,6 +166,11 @@ public class DtoReservation implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public List<DtoContact> getContacts() {
+
+        return contacts;
     }
 
 }

@@ -3,11 +3,9 @@ package air3il.gui.javafx.systeme;
 import air3il.gui.javafx.IControllerJavaFx;
 import air3il.gui.javafx.EnumView;
 import air3il.gui.javafx.ManagerGui;
-import air3il.commun.securite.Role;
+import air3il.gui.javafx.reservation.ControllerReservation;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 
 public class ControllerPrincipal implements IControllerJavaFx {
@@ -42,12 +40,11 @@ public class ControllerPrincipal implements IControllerJavaFx {
     @FXML
     public void doAfficherVols() {
         managerGui.showView(EnumView.Vols);
-
     }
 
     @FXML
     public void doAfficherReservation() {
-        managerGui.showView(EnumView.Passager);
+     managerGui.showView(EnumView.Reservation);
     }
 
     @FXML

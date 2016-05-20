@@ -84,7 +84,7 @@ public final class ModelClient {
             Logger.getLogger(ModelClient.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;
         }
-                // Test si c'est un ajout ou une modificaiton
+        // Test si c'est un ajout ou une modificaiton
         if (modeVue == CREER) {
             obsListClient.add(new ObsClient(dto));
         }
@@ -145,6 +145,14 @@ public final class ModelClient {
                     int lastCmp = p1.getPropNom().get().toUpperCase().compareTo(p2.getPropNom().get().toUpperCase());
                     return (lastCmp != 0 ? lastCmp : p1.getPropPrenom().get().toUpperCase().compareTo(p2.getPropPrenom().get()));
                 });
+    }
+
+    void modifier(ObsClient rowValue) {
+        try {
+            serviceClient.modifierClient(rowValue.creerDto());
+        } catch (ExceptionAppli ex) {
+            Logger.getLogger(ModelClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

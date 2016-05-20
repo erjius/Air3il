@@ -69,7 +69,7 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <TableView fx:id="tableViewClient" layoutY="134.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="134.0">
+                  <TableView fx:id="tableViewClient" editable="true" layoutY="134.0" onSort="#domodifier" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="134.0">
                     <columns>
                       <TableColumn fx:id="columnNom" prefWidth="75.0" text="Nom" />
                       <TableColumn fx:id="columnPrenom" prefWidth="75.0" text="Prenom" />

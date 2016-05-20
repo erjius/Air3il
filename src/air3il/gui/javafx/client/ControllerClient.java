@@ -1,19 +1,26 @@
 package air3il.gui.javafx.client;
 
+import air3il.commun.dto.DtoClient;
 import air3il.gui.javafx.EnumView;
 import air3il.gui.javafx.IControllerJavaFx;
 import air3il.gui.javafx.ManagerGui;
 import air3il.gui.javafx.obs.ObsClient;
 import java.util.Optional;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseButton;
+import javafx.util.Callback;
 
 /**
  *
@@ -63,13 +70,14 @@ public class ControllerClient implements IControllerJavaFx {
     // Champs
     private ManagerGui managerGui;
     private ModelClient modelClient;
-    
+
     @FXML
     private void doAjouter() {
-        
+
         try {
-            modelClient.ajouter();
+
             modelClient.ValiderMiseAJour();
+            modelClient.ajouter();
             initChamp();
             managerGui.showView(EnumView.Client);
             //System.out.println("ok pour doAjouter");
@@ -83,13 +91,24 @@ public class ControllerClient implements IControllerJavaFx {
 
     @FXML
     private void doSuivant() {
+
         managerGui.showView(EnumView.Reservation);
     }
-    
+
+    @FXML
+    private void doRechercher() {
+        managerGui.showView(EnumView.Reservation);
+    }
+
+    @FXML
+    private void domodifier() {
+        modelClient.preparerModifier(tableViewClient.getSelectionModel().getSelectedItem());
+    }
+
     @FXML
     public void doSupprimer() {
         int index = tableViewClient.getSelectionModel().getFocusedIndex();
-        
+
         if (index != -1) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setHeaderText("Voulez vous vraiment supprimer ?");
@@ -103,13 +122,13 @@ public class ControllerClient implements IControllerJavaFx {
                 try {
                     //suppression de la ligne selectionnée
                     modelClient.getObsListClient().remove(index);
-                    
+
                 } catch (Exception e) {
                 }
             } else if (result.get() == buttonTypeNON) {
                 // ... user chose "NON"
             }
-            
+
         }
     }
 
@@ -128,20 +147,51 @@ public class ControllerClient implements IControllerJavaFx {
         Email.textProperty().bindBidirectional(ViewClient.getPropEmail());
         Tel.textProperty().bindBidirectional(ViewClient.getPropTel());
         tableViewClient.setItems(modelClient.getObsListClient());
-        
-        
+
         tableViewClient.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                
+
             }
         });
         columnNom.setCellValueFactory(t -> t.getValue().getPropNom());
+        columnNom.setCellFactory(TextFieldTableCell.forTableColumn());
+        columnNom.setOnEditCommit(new EventHandler<CellEditEvent<ObsClient, String>>() {
+            @Override
+            public void handle(CellEditEvent<ObsClient, String> t) {
+              t.getRowValue().getPropNom().set(t.getNewValue());
+              modelClient.modifier(t.getRowValue());
+            }
+        });
         columnPrenom.setCellValueFactory(t -> t.getValue().getPropPrenom());
+        columnPrenom.setCellFactory(TextFieldTableCell.forTableColumn());
+        columnPrenom.setOnEditCommit(new EventHandler<CellEditEvent<ObsClient, String>>() {
+            @Override
+            public void handle(CellEditEvent<ObsClient, String> t) {
+              t.getRowValue().getPropPrenom().set(t.getNewValue());
+              modelClient.modifier(t.getRowValue());
+            }
+        });
         columnTel.setCellValueFactory(t -> t.getValue().getPropTel());
+        columnTel.setCellFactory(TextFieldTableCell.forTableColumn());
+        columnTel.setOnEditCommit(new EventHandler<CellEditEvent<ObsClient, String>>() {
+            @Override
+            public void handle(CellEditEvent<ObsClient, String> t) {
+              t.getRowValue().getPropTel().set(t.getNewValue());
+              modelClient.modifier(t.getRowValue());
+            }
+        });
         columnEmail.setCellValueFactory(t -> t.getValue().getPropEmail());
-        
+        columnEmail.setCellFactory(TextFieldTableCell.forTableColumn());
+        columnEmail.setOnEditCommit(new EventHandler<CellEditEvent<ObsClient, String>>() {
+            @Override
+            public void handle(CellEditEvent<ObsClient, String> t) {
+              t.getRowValue().getPropEmail().set(t.getNewValue());
+              modelClient.modifier(t.getRowValue());
+            }
+        });
+
     }
-    
+
     public void initChamp() {
         Nom.setText("");
         Prenom.setText(" ");
@@ -150,7 +200,7 @@ public class ControllerClient implements IControllerJavaFx {
         Nom_recherche.setText("");
         Prenom_recherche.setText("");
     }
-    
+
     @FXML
     private void gererClicSurListe(javafx.scene.input.MouseEvent event) {
         if (event.getButton().equals(MouseButton.PRIMARY)) {
@@ -159,5 +209,5 @@ public class ControllerClient implements IControllerJavaFx {
             }
         }
     }
-    
+
 }
